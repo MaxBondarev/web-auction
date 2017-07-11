@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="web-auction">
+    <output-path>$PROJECT_DIR$/out/artifacts/web_auction</output-path>
+    <root id="archive" name="web-auction.war" />
+  </artifact>
+</component>
