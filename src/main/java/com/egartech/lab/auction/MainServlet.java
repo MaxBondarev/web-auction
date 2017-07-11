@@ -15,7 +15,7 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
 
         PrintWriter out = resp.getWriter();
-        out.print("<h1>Hello Handmade Servlet</h1>");
+        out.print("<h1>Hello Handmade Third Servlet</h1>");
     }
 
     @Override
