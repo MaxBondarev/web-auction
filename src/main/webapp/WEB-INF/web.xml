@@ -5,12 +5,12 @@
          version="3.0">
 
 <servlet>
-    <servlet-name>mainServlet</servlet-name>
-    <servlet-class>com.egartech.lab.auction.MainServlet</servlet-class>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>com.egartech.lab.auction.FrontControllerServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-    <servlet-name>mainServlet</servlet-name>
+    <servlet-name>FrontController</servlet-name>
     <url-pattern>/</url-pattern>
 </servlet-mapping>
 
