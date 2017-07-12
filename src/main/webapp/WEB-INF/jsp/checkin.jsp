@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-<h1>Hello ${login}</h1>
+<h1>Hello ${log}</h1>
 <div class="center" >
     <b>Check in form</b>
     <form action = "/Registration" method = "post">
@@ -44,10 +44,7 @@
             <td><a href="/Index">log in</a></td>
         </tr>
         <tr>
-            <td><b>${log}</b></td>
-        </tr>
-        <tr>
-            <td><b>${pas}</b></td>
+            <td><b>${error}</b></td>
         </tr>
     </table>
 </div>

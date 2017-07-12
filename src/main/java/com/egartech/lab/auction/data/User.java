@@ -5,12 +5,12 @@ public class User {
     private String login;
     private String password;
 
-    public void User(String login, String password) {
-        getLogin(login);
-        getPassword(password);
+    public User(String login, String password) {
+        setLogin(login);
+        setPassword(password);
     }
 
-    public String getLogin(String login) {
+    public String getLogin() {
         return this.login;
     }
 
@@ -18,7 +18,7 @@ public class User {
         this.login = login;
     }
 
-    public String getPassword(String password) {
+    public String getPassword() {
         return this.password;
     }
 

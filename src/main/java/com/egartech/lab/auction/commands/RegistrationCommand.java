@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class RegistrationCommand extends FrontCommand {
+    User testUser;
 
     @Override
     public void init(
@@ -20,21 +21,24 @@ public class RegistrationCommand extends FrontCommand {
         this.request = req;
         this.response = resp;
 
-        User testUser = new User();
+        testUser = new User("admin", "admin");
     }
 
     @Override
     public void process() throws ServletException, IOException {
-        forward("registration");
-
 
     String username= request.getParameter("login");
     String password= request.getParameter("password");
 
-        request.setAttribute("log", username);
-        request.setAttribute("pas", password);
-        request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
-    //super.doPost(req, resp);
-    //this.process(req, resp);
+        System.out.println(username);
+        System.out.println(testUser.getLogin());
+        if (testUser.getLogin().equals(username)){
+            request.setAttribute("error", "Error! User " + username + " already exist!");
+            forward("checkin");
+        } else {
+            request.setAttribute("log", username);
+            request.setAttribute("pas", password);
+            forward("registration");
+        }
     }
 }
