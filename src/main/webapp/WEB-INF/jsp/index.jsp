@@ -18,7 +18,7 @@
     <h1>Hello ${login}</h1>
     <div class="center" >
         <b>Log in form</b>
-        <form action = "/" method = "post">
+        <form action = "/Login" method = "post">
             <table border = "0">
 
                 <tr>
@@ -38,16 +38,14 @@
             </table>
         </form>
     </div>
+    </div>
     <div align="center">
     <table border = "0">
         <tr>
             <td><a href="/Checkin">Check in</a></td>
         </tr>
         <tr>
-            <td><b>${log}</b></td>
-        </tr>
-        <tr>
-            <td><b>${pas}</b></td>
+            <td><b>${error}</b></td>
         </tr>
     </table>
     </div>

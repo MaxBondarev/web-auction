@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Welcome! New user created!</title>
-    <meta http-equiv="refresh" content="2; url=list">
+    <meta http-equiv="refresh" content="2; url=List">
 </head>
 <body>
     <h1>Welcome! New user ${log} created! </h1>
