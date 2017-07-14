@@ -21,7 +21,7 @@ public class RegistrationCommand extends FrontCommand {
         this.request = req;
         this.response = resp;
 
-        testUser = new User("admin", "admin");
+        //testUser = new User("admin", "admin");
     }
 
     @Override

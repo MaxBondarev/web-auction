@@ -23,7 +23,7 @@ public class LoginCommand extends FrontCommand  {
         this.request = req;
         this.response = resp;
 
-        testUser = new User("admin", "admin");
+        //testUser = new User("admin", "admin");
     }
 
     public void process() throws ServletException, IOException {
@@ -32,6 +32,7 @@ public class LoginCommand extends FrontCommand  {
         String password= request.getParameter("password");
 
         System.out.println(username);
+        /*
         System.out.println(testUser.getLogin());
         if (testUser.getLogin().equals(username) & testUser.getPassword().equals(password) ){
             request.setAttribute("log", username);
@@ -41,6 +42,8 @@ public class LoginCommand extends FrontCommand  {
             request.setAttribute("error", "Error! Login or password is incorrect!");
             forward("index");
         }
+        */
+        forward("list");
     }
 
 }
