@@ -12,6 +12,8 @@ public interface UserDaoInterface<T, Id extends Serializable>  {
 
     public T findById(Id id);
 
+    public T findByLogin(String login);
+
     public void delete(T entity);
 
     public List<T> findAll();

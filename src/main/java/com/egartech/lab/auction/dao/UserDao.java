@@ -75,6 +75,10 @@ public class UserDao implements UserDaoInterface<User, String>  {
         return user;
     }
 
+    public User findByLogin(String login) {
+        User user = (User) getCurrentSession().get(User.class, login);
+        return user;
+    }
     public void delete(User entity) {
         getCurrentSession().delete(entity);
     }

@@ -3,6 +3,7 @@ package com.egartech.lab.auction.data;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -11,6 +12,7 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private Set<Bet> userBets;
 
     @Id
     @Column(name = "id")
@@ -21,6 +23,7 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
 
     @Basic
     @Column(name = "login")
@@ -40,6 +43,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    @OneToMany//(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = true)
+    public Set<Bet> getUserBets() {
+        return userBets;
+    }
+
+    public void setUserBets(Set<Bet> bets) {
+        this.userBets = userBets;
     }
 
     @Override

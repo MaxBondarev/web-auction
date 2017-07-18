@@ -27,23 +27,23 @@ public class LotService {
 
     public Lot findById(String id) {
         lotDao.openCurrentSession();
-        Lot book = lotDao.findById(id);
+        Lot lot = lotDao.findById(id);
         lotDao.closeCurrentSession();
-        return book;
+        return lot;
     }
 
     public void delete(String id) {
         lotDao.openCurrentSessionwithTransaction();
-        Lot book = lotDao.findById(id);
-        lotDao.delete(book);
+        Lot lot = lotDao.findById(id);
+        lotDao.delete(lot);
         lotDao.closeCurrentSessionwithTransaction();
     }
 
     public List<Lot> findAll() {
         lotDao.openCurrentSession();
-        List<Lot> books = lotDao.findAll();
+        List<Lot> lots = lotDao.findAll();
         lotDao.closeCurrentSession();
-        return books;
+        return lots;
     }
 
     public void deleteAll() {
@@ -54,5 +54,18 @@ public class LotService {
 
     public LotDao lotDao() {
         return lotDao;
+    }
+
+    public boolean isNameUnique(String name){
+        boolean unique = true;
+        name = name.trim();
+        List<Lot> lots = findAll();
+        for (Lot lot: lots) {
+            if(lot.getName().equals(name)){
+                unique = false;
+            };
+        }
+
+        return unique;
     }
 }

@@ -2,6 +2,7 @@ package com.egartech.lab.auction.data;
 
 
 import javax.persistence.*;
+import com.egartech.lab.auction.data.Lot;
 
 @Entity
 @Table(name = "bets", schema = "auctiondb", catalog = "")
@@ -9,6 +10,8 @@ public class Bet {
 
     private int id;
     private double price;
+    private User user;
+    private Lot lot;
 
     @Id
     @Column(name = "id")
@@ -20,6 +23,7 @@ public class Bet {
         this.id = id;
     }
 
+
     @Basic
     @Column(name = "price")
     public double getPrice() {
@@ -29,6 +33,28 @@ public class Bet {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "lot_id", nullable = false)
+    public Lot getLot() {
+        return lot;
+    }
+
+    public void setLot(Lot lot) {
+        this.lot = lot;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -43,6 +69,7 @@ public class Bet {
         return true;
     }
 
+
     @Override
     public int hashCode() {
         int result;
@@ -54,3 +81,5 @@ public class Bet {
     }
 
 }
+
+

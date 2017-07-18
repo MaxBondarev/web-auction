@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.egartech.lab.auction.data.Lot" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.egartech.lab.auction.data.Bet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,23 +10,50 @@
 </head>
 <body>
     <h1>List of lots</h1>
-
-    <table>
-        <c:forEach items="${lots}" var="lot">
-            <tr>
-                <td>${lot.id}</td>
-                <td>${lot.name}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    <b>${error}</b>
+    <table border="1">
+    <tr>
+        <td><b>Lot</b></td>
+        <td><b>Bet</b></td>
+        <td><b>Bet owner</b></td>
+        <td><b>New bet</b></td>
+        <td><b></b></td>
+    </tr>
     <%
         ArrayList<Lot> lots=(ArrayList<Lot>) request.getAttribute("lots");
         for (Lot lot: lots) {
     %>
     <tr>
-        <td><%=lot.getId()%></td>
-        <td><%=lot.getName()%></td>
+        <form action = "/NewBet" method = "post">
+            <td><%=lot.getName()%></td>
+            <td>
+                <% if(lot.getBet() != null){%>
+                <%=lot.getBet().getPrice()%>
+                <%}%>
+            </td>
+            <td>
+                <% if(lot.getBet() != null){%>
+                <%=lot.getBet().getUser().getLogin()%>
+                <%}%>
+            </td>
+            <td>
+                <input type="number" value="" name="bet_price" size="5" >
+            </td>
+            </td>
+            <td>
+                <input type="submit" value="Update bet" size="10">
+                <input type="hidden" name="lot_id" value="<%=lot.getId()%>">
+            </td>
+        </form>
     </tr>
     <%}%>
+    </table>
+    <form action = "/NewLot" method = "post">
+        <table border = "0">
+            <tr>
+                <td><div><input type = "submit" value = "New Lot"  /></div></td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>
