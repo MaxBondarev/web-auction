@@ -1,3 +1,4 @@
+<%@ page import="com.egartech.lab.auction.data.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,10 +13,27 @@
             margin-right:auto;
 
         }
+        .right {
+            text-align: right;
+            padding-right: 25px;
+            padding-top: 13px;
+            font-size: medium;
+        }
     </style>
+    <div class="right">
+        <b>Hello<b>
+                <%
+             HttpSession hSession = request.getSession();
+             if(hSession.getAttribute("user") != null){
+                 User user = (User) hSession.getAttribute("user");
+         %>
+            <b><%=user.getLogin()%>!<b>
+        <%} else {%>
+                <b> guest!<b>
+        <%}%>
+    </div>
 </head>
 <body>
-<h1>Hello ${log}</h1>
 <div class="center" >
     <b>Check in form</b>
     <form action = "/Registration" method = "post">

@@ -1,8 +1,6 @@
 package com.egartech.lab.auction.commands;
 
-import com.egartech.lab.auction.data.Lot;
 import com.egartech.lab.auction.data.User;
-import com.egartech.lab.auction.service.LotService;
 import com.egartech.lab.auction.service.UserService;
 
 import javax.servlet.ServletContext;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegistrationCommand extends FrontCommand {
-    User testUser;
 
     @Override
     public void init(
@@ -38,11 +35,11 @@ public class RegistrationCommand extends FrontCommand {
             login = login.replaceAll("[/\\s/]+", "");
             login = login.trim();
 
-            if  (login.matches("") || login.matches(" ")) {
+            if  (login == null || login.matches("") || login.matches(" ")) {
                 request.setAttribute("loginError", "Login must contain letters!");
                 forward("checkin");
             //If user with such login exist
-            } else if (new UserService().findByLogin(login) == null) {
+            } else if (new UserService().findByLogin(login) != null) {
                 request.setAttribute("loginError", "Error! Login " + login + " already exist!");
                 forward("checkin");
             }
@@ -74,6 +71,8 @@ public class RegistrationCommand extends FrontCommand {
 
         } catch (Exception e){
             System.out.println(e.toString());
+            request.setAttribute("pasError", "Some error!");
+            forward("checkin");
         }
     }
 }

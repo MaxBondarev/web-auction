@@ -3,6 +3,6 @@
 <head>
 </head>
 <body>
-<p>Sorry, this command is not known!</p>
+<p>Sorry, this command is unknown!</p>
 </body>
 </html>
