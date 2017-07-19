@@ -73,9 +73,13 @@ public class FrontControllerServlet extends HttpServlet {
         try {
             //New Lot
             if (req.getRequestURI().equals("/NewLot")) {
-                req.getRequestDispatcher("/WEB-INF/jsp/newlot.jsp").forward(req, resp);
-
-            }else if(req.getRequestURI().equals("/CreateLot")) {
+                HttpSession hSession = req.getSession();
+                if(hSession.getAttribute("user") != null) {
+                    req.getRequestDispatcher("/WEB-INF/jsp/newlot.jsp").forward(req, resp);
+                } else {
+                    req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+                }
+            } else if(req.getRequestURI().equals("/CreateLot")) {
                 //Validation
                 String lotname = req.getParameter("name");
                 lotname = lotname.replaceAll("[/\\s/]+", " ");
