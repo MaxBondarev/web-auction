@@ -34,11 +34,8 @@ public class UserService {
 
     public User findByLogin(String login) {
         userDao.openCurrentSession();
-        System.out.println("Session");
         User user = userDao.findByLogin(login);
-        System.out.println("login");
         userDao.closeCurrentSession();
-        System.out.println("CloseSession");
         return user;
     }
 

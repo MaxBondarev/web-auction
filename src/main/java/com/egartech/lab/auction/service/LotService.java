@@ -20,6 +20,7 @@ public class LotService {
     }
 
     public void update(Lot entity) {
+
         lotDao.openCurrentSessionwithTransaction();
         lotDao.update(entity);
         lotDao.closeCurrentSessionwithTransaction();

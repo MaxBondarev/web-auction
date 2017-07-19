@@ -3,6 +3,7 @@ package com.egartech.lab.auction.service;
 
 import com.egartech.lab.auction.dao.BetDao;
 import com.egartech.lab.auction.data.Bet;
+import com.egartech.lab.auction.data.Lot;
 
 import java.util.List;
 
@@ -13,10 +14,12 @@ public class BetService {
         betDao = new BetDao();
     }
 
-    public void persist(Bet entity) {
+    public void persist(Bet entity, Lot lot) {
         betDao.openCurrentSessionwithTransaction();
         betDao.persist(entity);
         betDao.closeCurrentSessionwithTransaction();
+        LotService lc = new LotService();
+        lc.update(lot);
     }
 
     public void update(Bet entity) {
@@ -25,7 +28,7 @@ public class BetService {
         betDao.closeCurrentSessionwithTransaction();
     }
 
-    public Bet findById(String id) {
+    public Bet findById(Integer id) {
         betDao.openCurrentSession();
         Bet bet = betDao.findById(id);
         betDao.closeCurrentSession();

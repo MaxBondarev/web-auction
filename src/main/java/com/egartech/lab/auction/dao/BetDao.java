@@ -64,7 +64,11 @@ public class BetDao implements BetDaoInterface<Bet, String>  {
         getCurrentSession().update(entity);
     }
 
-    public Bet findById(String id) {
+    public Bet findById(String s) {
+        return null;
+    }
+
+    public Bet findById(Integer id) {
         Bet bet = (Bet) getCurrentSession().get(Bet.class, id);
         return bet;
     }

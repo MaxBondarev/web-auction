@@ -1,7 +1,12 @@
 package com.egartech.lab.auction.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import com.egartech.lab.auction.data.Bet;
+import com.egartech.lab.auction.service.BetService;
+import com.egartech.lab.auction.service.LotService;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,11 +15,227 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 import com.egartech.lab.auction.data.Lot;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.metamodel.domain.Entity;
+
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.metamodel.Metamodel;
 
 public class LotDao implements LotDaoInterface<Lot, String>  {
     private Session currentSession;
 
     private Transaction currentTransaction;
+
+    EntityManager em = new EntityManager() {
+        public void persist(Object entity) {
+
+        }
+
+        public <T> T merge(T entity) {
+            return null;
+        }
+
+        public void remove(Object entity) {
+
+        }
+
+        public <T> T find(Class<T> entityClass, Object primaryKey) {
+            return null;
+        }
+
+        public <T> T find(Class<T> entityClass, Object primaryKey, Map<String, Object> properties) {
+            return null;
+        }
+
+        public <T> T find(Class<T> entityClass, Object primaryKey, LockModeType lockMode) {
+            return null;
+        }
+
+        public <T> T find(Class<T> entityClass, Object primaryKey, LockModeType lockMode, Map<String, Object> properties) {
+            return null;
+        }
+
+        public <T> T getReference(Class<T> entityClass, Object primaryKey) {
+            return null;
+        }
+
+        public void flush() {
+
+        }
+
+        public void setFlushMode(FlushModeType flushMode) {
+
+        }
+
+        public FlushModeType getFlushMode() {
+            return null;
+        }
+
+        public void lock(Object entity, LockModeType lockMode) {
+
+        }
+
+        public void lock(Object entity, LockModeType lockMode, Map<String, Object> properties) {
+
+        }
+
+        public void refresh(Object entity) {
+
+        }
+
+        public void refresh(Object entity, Map<String, Object> properties) {
+
+        }
+
+        public void refresh(Object entity, LockModeType lockMode) {
+
+        }
+
+        public void refresh(Object entity, LockModeType lockMode, Map<String, Object> properties) {
+
+        }
+
+        public void clear() {
+
+        }
+
+        public void detach(Object entity) {
+
+        }
+
+        public boolean contains(Object entity) {
+            return false;
+        }
+
+        public LockModeType getLockMode(Object entity) {
+            return null;
+        }
+
+        public void setProperty(String propertyName, Object value) {
+
+        }
+
+        public Map<String, Object> getProperties() {
+            return null;
+        }
+
+        public Query createQuery(String qlString) {
+            return null;
+        }
+
+        public <T> TypedQuery<T> createQuery(CriteriaQuery<T> criteriaQuery) {
+            return null;
+        }
+
+        public Query createQuery(CriteriaUpdate updateQuery) {
+            return null;
+        }
+
+        public Query createQuery(CriteriaDelete deleteQuery) {
+            return null;
+        }
+
+        public <T> TypedQuery<T> createQuery(String qlString, Class<T> resultClass) {
+            return null;
+        }
+
+        public Query createNamedQuery(String name) {
+            return null;
+        }
+
+        public <T> TypedQuery<T> createNamedQuery(String name, Class<T> resultClass) {
+            return null;
+        }
+
+        public Query createNativeQuery(String sqlString) {
+            return null;
+        }
+
+        public Query createNativeQuery(String sqlString, Class resultClass) {
+            return null;
+        }
+
+        public Query createNativeQuery(String sqlString, String resultSetMapping) {
+            return null;
+        }
+
+        public StoredProcedureQuery createNamedStoredProcedureQuery(String name) {
+            return null;
+        }
+
+        public StoredProcedureQuery createStoredProcedureQuery(String procedureName) {
+            return null;
+        }
+
+        public StoredProcedureQuery createStoredProcedureQuery(String procedureName, Class... resultClasses) {
+            return null;
+        }
+
+        public StoredProcedureQuery createStoredProcedureQuery(String procedureName, String... resultSetMappings) {
+            return null;
+        }
+
+        public void joinTransaction() {
+
+        }
+
+        public boolean isJoinedToTransaction() {
+            return false;
+        }
+
+        public <T> T unwrap(Class<T> cls) {
+            return null;
+        }
+
+        public Object getDelegate() {
+            return null;
+        }
+
+        public void close() {
+
+        }
+
+        public boolean isOpen() {
+            return false;
+        }
+
+        public EntityTransaction getTransaction() {
+            return null;
+        }
+
+        public EntityManagerFactory getEntityManagerFactory() {
+            return null;
+        }
+
+        public CriteriaBuilder getCriteriaBuilder() {
+            return null;
+        }
+
+        public Metamodel getMetamodel() {
+            return null;
+        }
+
+        public <T> EntityGraph<T> createEntityGraph(Class<T> rootType) {
+            return null;
+        }
+
+        public EntityGraph<?> createEntityGraph(String graphName) {
+            return null;
+        }
+
+        public EntityGraph<?> getEntityGraph(String graphName) {
+            return null;
+        }
+
+        public <T> List<EntityGraph<? super T>> getEntityGraphs(Class<T> entityClass) {
+            return null;
+        }
+    };
 
     public LotDao() {
     }
@@ -59,12 +280,42 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
         getCurrentSession().save(entity);
     }
 
+
+    public Integer findIdMaxPriceLotBet(Lot entity){
+        System.out.println("findIdMaxPriceLotBet ");
+      //Integer intid = (Integer) em.createQuery("select b.id from new_schema.bets b where b.price=(SELECT MAX(b.price) FROM new_schema.bets b " +
+        //        "where b.lot_id like :lotid)").setParameter("lotid", entity.getId()).getSingleResult();
+        //return intid;
+        return 3;
+    }
+
     public void update(Lot entity) {
+        System.out.println("update lot dao ");
+        //EntityManager em = new En;
+
+        //currentSession.createQuery("select ");
+        /*
+        Criteria criteria = currentSession
+                .createCriteria(Bet.class).add(Restrictions.eq("lot_id", entity.getId()))
+                .setProjection(Projections.max("price"));
+        Bet maxPrice = (Bet)criteria.uniqueResult();
+        System.out.println("maxPrice: " + maxPrice);
+        entity.setBet(maxPrice);
+        */
+
+
+        BetService betService = new BetService();
+        Bet bet = betService.findById(findIdMaxPriceLotBet(entity));
+        System.out.println("update lot dao bet " + bet);
+        entity.setBet(bet);
+        System.out.println("update lot dao before entity update");
         getCurrentSession().update(entity);
+        System.out.println("update lot dao after entity update");
+
     }
 
     public Lot findById(String id) {
-        Lot lot = (Lot) getCurrentSession().get(Lot.class, id);
+        Lot lot = (Lot) getCurrentSession().get(Lot.class, Integer.parseInt(id));
         return lot;
     }
 

@@ -32,7 +32,6 @@ public class FrontControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("login", req.getRequestURI().toString().replace("/",""));
-        //req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
 
         FrontCommand command = getCommand(req);
         command.init(getServletContext(), req, resp);
@@ -72,12 +71,8 @@ public class FrontControllerServlet extends HttpServlet {
         try {
             //New Lot
             if (req.getRequestURI().equals("/NewLot")) {
-                HttpSession hSession = req.getSession();
-                if(hSession.getAttribute("user") != null) {
                     req.getRequestDispatcher("/WEB-INF/jsp/newlot.jsp").forward(req, resp);
-                } else {
-                    req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
-                }
+
             } else if(req.getRequestURI().equals("/CreateLot")) {
                 //Validation
                 String lotname = req.getParameter("name");
@@ -117,10 +112,10 @@ public class FrontControllerServlet extends HttpServlet {
                         ListCommand lc = new ListCommand();
                         lc.init(getServletContext(), req, resp);
                         lc.process();
-                        //req.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(req, resp);
                     } else {
                         req.setAttribute("error", "");
                         System.out.println("else");
+
                         Bet bet = new Bet();
                         bet.setPrice(betPrice);
                         HttpSession session = req.getSession();
@@ -130,15 +125,17 @@ public class FrontControllerServlet extends HttpServlet {
                         LotService lotService = new LotService();
                         Lot lot = lotService.findById(req.getParameter("lot_id"));
                         bet.setLot(lot);
+                        System.out.println("setLot");
                         BetService betService = new BetService();
-                        betService.persist(bet);
+                        betService.persist(bet, lot);
+                        System.out.println("persist");
+                        wait(100);
                         ListCommand lc = new ListCommand();
                         lc.init(getServletContext(), req, resp);
                         lc.process();
-                        //req.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(req, resp);
                     }
                 } catch (Exception e){
-                    req.setAttribute("error", "Error! The bet must be greater than zero!");
+                    req.setAttribute("error", "Error! Some error!");
                     System.out.println(e.toString());
                     ListCommand lc = new ListCommand();
                     lc.init(getServletContext(), req, resp);
@@ -146,9 +143,6 @@ public class FrontControllerServlet extends HttpServlet {
                 }
             //Other commands
             }else{
-
-
-
         FrontCommand command = getCommand(req);
         command.init(getServletContext(), req, resp);
         command.process();
@@ -158,50 +152,4 @@ public class FrontControllerServlet extends HttpServlet {
             new UnknownCommand();
         }
     }
-
-    /*
-      generate the page showing all the request parameters
-    */
-    /*
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setStatus(200);
-
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/plain");
-
-        // Get the values of all request parameters
-        Enumeration en = request.getParameterNames();
-        while (en.hasMoreElements()) {
-            // Get the name of the request parameter
-            String name = (String) en.nextElement();
-            out.println(name);
-
-            // Get the value of the request parameter
-            String value = request.getParameter(name);
-
-            // If the request parameter can appear more than once in the query string, get all values
-            String[] values = request.getParameterValues(name);
-
-            for (int i = 0; i < values.length; i++) {
-                out.println(" " + values[i]);
-            }
-        }
-        out.close();
-        }
-
-
-        @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        String username= req.getParameter("login");
-        String password= req.getParameter("password");
-
-        req.setAttribute("log", username);
-        req.setAttribute("pas", password);
-        req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
-        //super.doPost(req, resp);
-        //this.process(req, resp);
-    }
-        */
-    }
+}
