@@ -69,7 +69,6 @@ public class FrontControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-
         try {
             //New Lot
             if (req.getRequestURI().equals("/NewLot")) {
