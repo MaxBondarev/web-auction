@@ -7,7 +7,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "users", schema = "auctiondb", catalog = "")
+@Table(name = "users", schema = "new_schema", catalog = "")
 public class User {
     private int id;
     private String login;
@@ -15,6 +15,7 @@ public class User {
     private Set<Bet> userBets;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;

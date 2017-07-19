@@ -35,19 +35,31 @@ public class LoginCommand extends FrontCommand  {
 
         String login= request.getParameter("login");
         String password= request.getParameter("password");
+        try {
+
 
         UserService userService = new UserService();
+            //System.out.println("UserService");
         User user = userService.findByLogin(login);
+            //System.out.println("findByLogin");
         if (user != null && user.getLogin().equals(login) && user.getPassword().equals(password)){
+            //System.out.println("if 1");
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            forward("list");
+            ListCommand lc = new ListCommand();
+            lc.init(context, request, response);
+            lc.process();
+            //forward("list");
+            //request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
         } else {
+            //System.out.println("else 1");
             request.setAttribute("error", "Error! Login or password incorrect!");
             forward("index");
         }
-
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
         //serviceCall();
 
         /*

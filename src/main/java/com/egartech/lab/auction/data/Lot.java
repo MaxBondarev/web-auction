@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "lots", schema = "auctiondb", catalog = "")
+@Table(name = "lots", schema = "new_schema", catalog = "")
 public class Lot {
 
     private int id;
@@ -15,6 +15,7 @@ public class Lot {
     private Set<Bet> bets;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;

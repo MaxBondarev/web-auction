@@ -2,6 +2,7 @@ package com.egartech.lab.auction.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,6 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.egartech.lab.auction.data.User;
+import org.hibernate.criterion.Restrictions;
 
 public class UserDao implements UserDaoInterface<User, String>  {
     private Session currentSession;
@@ -19,12 +21,12 @@ public class UserDao implements UserDaoInterface<User, String>  {
     }
 
     public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.startSessionFactory().openSession();
         return currentSession;
     }
 
     public Session openCurrentSessionwithTransaction() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.startSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
@@ -38,13 +40,6 @@ public class UserDao implements UserDaoInterface<User, String>  {
         currentSession.close();
     }
 
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
 
     public Session getCurrentSession() {
         return currentSession;
@@ -76,7 +71,9 @@ public class UserDao implements UserDaoInterface<User, String>  {
     }
 
     public User findByLogin(String login) {
-        User user = (User) getCurrentSession().get(User.class, login);
+        Criteria criteria = currentSession.createCriteria(User.class);
+        User user = (User) criteria.add(Restrictions.eq("login", login))
+                .uniqueResult();
         return user;
     }
     public void delete(User entity) {

@@ -19,12 +19,12 @@ public class BetDao implements BetDaoInterface<Bet, String>  {
     }
 
     public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.startSessionFactory().openSession();
         return currentSession;
     }
 
     public Session openCurrentSessionwithTransaction() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.startSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
@@ -38,13 +38,7 @@ public class BetDao implements BetDaoInterface<Bet, String>  {
         currentSession.close();
     }
 
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
+
 
     public Session getCurrentSession() {
         return currentSession;

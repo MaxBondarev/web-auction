@@ -5,7 +5,7 @@ import javax.persistence.*;
 import com.egartech.lab.auction.data.Lot;
 
 @Entity
-@Table(name = "bets", schema = "auctiondb", catalog = "")
+@Table(name = "bets", schema = "new_schema", catalog = "")
 public class Bet {
 
     private int id;
@@ -14,6 +14,7 @@ public class Bet {
     private Lot lot;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;

@@ -20,12 +20,12 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
     }
 
     public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.startSessionFactory().openSession();
         return currentSession;
     }
 
     public Session openCurrentSessionwithTransaction() {
-        currentSession = getSessionFactory().openSession();
+        currentSession = HibernateUtil.startSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
@@ -37,14 +37,6 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
     public void closeCurrentSessionwithTransaction() {
         currentTransaction.commit();
         currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
     }
 
     public Session getCurrentSession() {

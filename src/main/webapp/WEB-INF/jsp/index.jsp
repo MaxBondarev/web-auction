@@ -45,6 +45,12 @@
             <td><a href="/Checkin">Check in</a></td>
         </tr>
         <tr>
+            <td><b>${loginError}</b></td>
+        </tr>
+        <tr>
+            <td><b>${pasError}</b></td>
+        </tr>
+        <tr>
             <td><b>${error}</b></td>
         </tr>
     </table>
