@@ -18,22 +18,8 @@ public class ListCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         HttpSession hSession = request.getSession();
         if(hSession.getAttribute("user") != null) {
-            System.out.println("List start");
             LotService lotService = new LotService();
-            System.out.println("new LotService");
             List<Lot> lots = lotService.findAll();
-            System.out.println("Find All");
-            System.out.println("Lots Persisted are :");
-            for (Lot b : lots) {
-                System.out.println("-" + b.getName().toString());
-                if (b.getBet() != null) {
-                    System.out.println("-" + b.getBet().getPrice());
-
-
-                }
-                System.out.println("-" );
-            }
-            request.setAttribute("lots", null);
             request.setAttribute("lots", lots);
             forward("list");
         } else {
