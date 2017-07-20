@@ -6,10 +6,7 @@ import java.util.Map;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.service.BetService;
 import com.egartech.lab.auction.service.LotService;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
@@ -20,6 +17,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.metamodel.domain.Entity;
 
 import javax.persistence.*;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
@@ -283,10 +281,23 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
 
     public Integer findIdMaxPriceLotBet(Lot entity){
         System.out.println("findIdMaxPriceLotBet ");
-      //Integer intid = (Integer) em.createQuery("select b.id from new_schema.bets b where b.price=(SELECT MAX(b.price) FROM new_schema.bets b " +
-        //        "where b.lot_id like :lotid)").setParameter("lotid", entity.getId()).getSingleResult();
-        //return intid;
-        return 3;
+        /*
+        Integer intId = (Integer) em.createQuery("select b.id from new_schema.bets b where b.price=(SELECT MAX(b.price) FROM new_schema.bets b " +
+                "where b.lot_id like :lotid)").getFirstResult();
+
+        Integer intId = (Integer) em.createQuery("SELECT MAX(b.price) FROM new_schema.bets b " +
+                "where b.lot_id like :lotid").getSingleResult();*/
+
+        //Double intId = (Double) getCurrentSession().createQuery("select max(price) from Bet where lot_id=:lotid ")
+        //Integer intId = (Integer) getCurrentSession().createQuery("select id from Bet where lot_id=:lotid and price=100 ")
+        Integer intId = (Integer) getCurrentSession().createQuery("select id from Bet where lot_id=:lotid and price=(select max(price) from Bet where lot_id=:lotid) ")
+        //Integer intId = (Integer) getCurrentSession().createQuery("select id, max(price) from Bet where lot_id=:lotid ")
+                .setParameter("lotid", entity.getId()).list().get(0);
+
+        //System.out.println("ejbql = " + getCurrentSession().createQuery("select id from Bet").getFirstResult().toString());
+        System.out.println("intId = " + intId.toString());
+        return intId;
+        //return 3;
     }
 
     public void update(Lot entity) {

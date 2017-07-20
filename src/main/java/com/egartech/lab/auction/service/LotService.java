@@ -43,7 +43,7 @@ public class LotService {
     public List<Lot> findAll() {
         lotDao.openCurrentSession();
         List<Lot> lots = lotDao.findAll();
-        lotDao.closeCurrentSession();
+        //lotDao.closeCurrentSession();
         return lots;
     }
 

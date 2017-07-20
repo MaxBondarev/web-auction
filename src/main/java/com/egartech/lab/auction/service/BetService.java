@@ -31,7 +31,7 @@ public class BetService {
     public Bet findById(Integer id) {
         betDao.openCurrentSession();
         Bet bet = betDao.findById(id);
-        betDao.closeCurrentSession();
+        //betDao.closeCurrentSession();
         return bet;
     }
 

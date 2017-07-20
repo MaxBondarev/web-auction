@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
@@ -32,6 +33,7 @@ public class ListCommand extends FrontCommand {
                 }
                 System.out.println("-" );
             }
+            request.setAttribute("lots", null);
             request.setAttribute("lots", lots);
             forward("list");
         } else {
