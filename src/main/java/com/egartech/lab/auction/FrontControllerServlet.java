@@ -30,9 +30,18 @@ public class FrontControllerServlet extends HttpServlet {
 
     private FrontCommand getCommand(HttpServletRequest req) {
         try {
-            if (req.getRequestURI().equals("/")){
+            if (req.getRequestURI().equals("/")) {
                 Class type = Class.forName(
-                                "com.egartech.lab.auction.commands.IndexCommand");
+                        "com.egartech.lab.auction.commands.IndexCommand");
+                return (FrontCommand) type
+                        .asSubclass(FrontCommand.class)
+                        .newInstance();
+            }else if(req.getRequestURI().equals("/LogOut")){
+                HttpSession session = req.getSession();
+                session.setAttribute("user", null);
+                Class type = Class.forName(
+                        "com.egartech.lab.auction.commands.IndexCommand");
+
                 return (FrontCommand) type
                         .asSubclass(FrontCommand.class)
                         .newInstance();

@@ -1,4 +1,4 @@
-package com.egartech.lab.auction.dao;
+package com.egartech.lab.auction;
 
 
 import org.hibernate.SessionFactory;
@@ -18,12 +18,17 @@ public class HibernateUtil {
             return sessionFactory;
         }
     }
-
+    
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
         return sessionFactory;
+    }
+    
+    public static void closeSessionFactory(){
+        sessionFactory.close();
+        isSessionCreate = false;
     }
 }

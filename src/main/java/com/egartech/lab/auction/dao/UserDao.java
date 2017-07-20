@@ -2,6 +2,7 @@ package com.egartech.lab.auction.dao;
 
 import java.util.List;
 
+import com.egartech.lab.auction.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
