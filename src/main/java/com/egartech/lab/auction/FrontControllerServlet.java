@@ -3,27 +3,17 @@ package com.egartech.lab.auction;
 import com.egartech.lab.auction.commands.FrontCommand;
 import com.egartech.lab.auction.commands.ListCommand;
 import com.egartech.lab.auction.commands.UnknownCommand;
-import com.egartech.lab.auction.dao.LotDao;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.data.Lot;
 import com.egartech.lab.auction.data.User;
 import com.egartech.lab.auction.service.BetService;
 import com.egartech.lab.auction.service.LotService;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-import org.hibernate.Hibernate;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.*;
 
 
 public class FrontControllerServlet extends HttpServlet {
@@ -106,7 +96,6 @@ public class FrontControllerServlet extends HttpServlet {
 
                 try {
                     Double betPrice = Double.parseDouble(req.getParameter("bet_price"));
-                    System.out.println(betPrice);
                     if (betPrice == null || betPrice <= 0) {
                         req.setAttribute("error", "Error! The bet must be greater than zero!");
                         ListCommand lc = new ListCommand();
@@ -114,7 +103,6 @@ public class FrontControllerServlet extends HttpServlet {
                         lc.process();
                     } else {
                         req.setAttribute("error", "");
-                        System.out.println("else");
 
                         Bet bet = new Bet();
                         bet.setPrice(betPrice);
@@ -125,11 +113,8 @@ public class FrontControllerServlet extends HttpServlet {
                         LotService lotService = new LotService();
                         Lot lot = lotService.findById(req.getParameter("lot_id"));
                         bet.setLot(lot);
-                        System.out.println("setLot");
                         BetService betService = new BetService();
                         betService.persist(bet, lot);
-                        System.out.println("persist");
-                        wait(100);
                         ListCommand lc = new ListCommand();
                         lc.init(getServletContext(), req, resp);
                         lc.process();

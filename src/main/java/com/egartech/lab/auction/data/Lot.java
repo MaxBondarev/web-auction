@@ -1,12 +1,10 @@
 package com.egartech.lab.auction.data;
 
-import com.egartech.lab.auction.data.Bet;
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "lots", schema = "new_schema", catalog = "")
+@Table(name = "lots", schema = "new_schema")
 public class Lot {
 
     private int id;
@@ -37,7 +35,6 @@ public class Lot {
 
 
     @OneToOne(fetch = FetchType.EAGER)
-//    @PrimaryKeyJoinColumn
     @JoinColumn(name = "bet_id", nullable = true)
     public Bet getBet() {
         return bet;
@@ -49,7 +46,6 @@ public class Lot {
 
 
     @OneToMany(fetch = FetchType.EAGER)
-    //@OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "lot_id", nullable = true)
     public Set<Bet> getBets() {
         return bets;

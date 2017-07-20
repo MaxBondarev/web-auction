@@ -7,7 +7,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "users", schema = "new_schema", catalog = "")
+@Table(name = "users", schema = "new_schema")
 public class User {
     private int id;
     private String login;
@@ -47,7 +47,7 @@ public class User {
     }
 
 
-    @OneToMany//(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "user_id", nullable = true)
     public Set<Bet> getUserBets() {
         return userBets;

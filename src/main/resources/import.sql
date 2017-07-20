@@ -12,4 +12,6 @@ INSERT INTO `new_schema`.`lots` (`name`) VALUES ('Tiberium');
 INSERT INTO `new_schema`.`bets` (`price`, `lot_id`, `user_id`) VALUES ('100', '1', '3');
 INSERT INTO `new_schema`.`bets` (`price`, `lot_id`, `user_id`) VALUES ('150', '2', '1');
 INSERT INTO `new_schema`.`bets` (`price`, `lot_id`, `user_id`) VALUES ('50', '3', '2');
+UPDATE `new_schema`.`lots` SET `bet_id`=1 WHERE `id`=1;
 UPDATE `new_schema`.`lots` SET `bet_id`=2 WHERE `id`=2;
+UPDATE `new_schema`.`lots` SET `bet_id`=3 WHERE `id`=3;

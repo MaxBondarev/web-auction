@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 import com.egartech.lab.auction.data.User;
 import org.hibernate.criterion.Restrictions;

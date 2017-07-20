@@ -5,7 +5,7 @@ import javax.persistence.*;
 import com.egartech.lab.auction.data.Lot;
 
 @Entity
-@Table(name = "bets", schema = "new_schema", catalog = "")
+@Table(name = "bets", schema = "new_schema")
 public class Bet {
 
     private int id;
