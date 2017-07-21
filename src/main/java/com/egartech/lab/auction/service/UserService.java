@@ -1,7 +1,6 @@
 package com.egartech.lab.auction.service;
 
-
-import com.egartech.lab.auction.dao.UserDao;
+import com.egartech.lab.auction.dao.impl.hibernate.UserDao;
 import com.egartech.lab.auction.data.User;
 
 import java.util.List;
@@ -13,9 +12,9 @@ public class UserService {
         userDao = new UserDao();
     }
 
-    public void persist(User entity) {
+    public void save(User entity) {
         userDao.openCurrentSessionwithTransaction();
-        userDao.persist(entity);
+        userDao.save(entity);
         userDao.closeCurrentSessionwithTransaction();
     }
 

@@ -1,10 +1,7 @@
 package com.egartech.lab.auction.data;
 
-
-
 import javax.persistence.*;
 import java.util.Set;
-
 
 @Entity
 @Table(name = "users", schema = "new_schema")
@@ -24,7 +21,6 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-
 
     @Basic
     @Column(name = "login")
@@ -46,7 +42,6 @@ public class User {
         this.password = password;
     }
 
-
     @OneToMany
     @JoinColumn(name = "user_id", nullable = true)
     public Set<Bet> getUserBets() {
@@ -61,14 +56,13 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User that = (User) o;
-
         if (id != that.id) return false;
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-
-        return true;
+        if (login != null ? !login.equals(that.login) : that.login != null) {
+            return false;
+        }
+        return password != null ? password.equals(that.password)
+                : that.password == null;
     }
 
     @Override
@@ -78,5 +72,4 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
-
 }

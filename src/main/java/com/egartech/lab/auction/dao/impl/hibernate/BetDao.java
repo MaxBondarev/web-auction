@@ -1,21 +1,17 @@
-package com.egartech.lab.auction.dao;
+package com.egartech.lab.auction.dao.impl.hibernate;
 
 import java.util.List;
-
 import com.egartech.lab.auction.HibernateUtil;
-import org.hibernate.Criteria;
+import com.egartech.lab.auction.dao.DaoInterface;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import com.egartech.lab.auction.data.Bet;
 
-import com.egartech.lab.auction.data.User;
-import org.hibernate.criterion.Restrictions;
-
-public class UserDao implements UserDaoInterface<User, String>  {
+public class BetDao implements DaoInterface<Bet, String> {
     private Session currentSession;
-
     private Transaction currentTransaction;
 
-    public UserDao() {
+    public BetDao() {
     }
 
     public Session openCurrentSession() {
@@ -38,7 +34,6 @@ public class UserDao implements UserDaoInterface<User, String>  {
         currentSession.close();
     }
 
-
     public Session getCurrentSession() {
         return currentSession;
     }
@@ -55,38 +50,37 @@ public class UserDao implements UserDaoInterface<User, String>  {
         this.currentTransaction = currentTransaction;
     }
 
-    public void persist(User entity) {
+    public void save(Bet entity) {
         getCurrentSession().save(entity);
     }
 
-    public void update(User entity) {
+    public void update(Bet entity) {
         getCurrentSession().update(entity);
     }
 
-    public User findById(String id) {
-        User user = (User) getCurrentSession().get(User.class, id);
-        return user;
+    public Bet findById(String s) {
+        return null;
     }
 
-    public User findByLogin(String login) {
-        Criteria criteria = currentSession.createCriteria(User.class);
-        User user = (User) criteria.add(Restrictions.eq("login", login))
-                .uniqueResult();
-        return user;
+    public Bet findById(Integer id) {
+        Bet bet = (Bet) getCurrentSession().get(Bet.class, id);
+        return bet;
     }
-    public void delete(User entity) {
+
+    public void delete(Bet entity) {
         getCurrentSession().delete(entity);
     }
 
     @SuppressWarnings("unchecked")
-    public List<User> findAll() {
-        List<User> users = (List<User>) getCurrentSession().createQuery("from User").list();
-        return users;
+    public List<Bet> findAll() {
+        List<Bet> bets = (List<Bet>) getCurrentSession()
+                .createQuery("from Bet").list();
+        return bets;
     }
 
     public void deleteAll() {
-        List<User> entityList = findAll();
-        for (User entity : entityList) {
+        List<Bet> entityList = findAll();
+        for (Bet entity : entityList) {
             delete(entity);
         }
     }

@@ -2,7 +2,6 @@ package com.egartech.lab.auction.commands;
 
 import com.egartech.lab.auction.data.User;
 import com.egartech.lab.auction.service.UserService;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,6 @@ public class RegistrationCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        
         try {
             //Validation
             String login = request.getParameter("login");
@@ -35,19 +33,25 @@ public class RegistrationCommand extends FrontCommand {
             login = login.replaceAll("[/\\s/]+", "");
             login = login.trim();
 
-            if  (login == null || login.matches("") || login.matches(" ")) {
-                request.setAttribute("loginError", "Login must contain letters!");
+            if (login == null || login.matches("") || login.matches(" ")) {
+                request.setAttribute("loginError",
+                        "Login must contain letters!");
                 forward("checkin");
+
             //If user with such login exist
             } else if (new UserService().findByLogin(login) != null) {
-                request.setAttribute("loginError", "Error! Login " + login + " already exist!");
+                request.setAttribute("loginError",
+                        "Error! Login " + login + " already exist!");
                 forward("checkin");
             }
+
             //Password validation
             password = password.replaceAll("[/\\s/]+", " ");
             password = password.trim();
-            if  (password == null || password.matches("") || password.matches(" ")) {
-                request.setAttribute("pasError", "Password should not contain spaces and must contain letters!");
+            if  (password == null || password.matches("")
+                    || password.matches(" ")) {
+                request.setAttribute("pasError", "Password should not " +
+                        "contain spaces and must contain letters!");
                 forward("checkin");
             }
 
@@ -58,7 +62,7 @@ public class RegistrationCommand extends FrontCommand {
 
             //Save to DB
             UserService userService = new UserService();
-            userService.persist(newUser);
+            userService.save(newUser);
 
             //Save to session
             HttpSession session = request.getSession();
@@ -69,7 +73,7 @@ public class RegistrationCommand extends FrontCommand {
             lc.init(context, request, response);
             lc.process();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
             request.setAttribute("pasError", "Some error!");
             forward("checkin");

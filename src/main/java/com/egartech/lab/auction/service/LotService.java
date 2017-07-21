@@ -1,9 +1,7 @@
 package com.egartech.lab.auction.service;
 
-
-import com.egartech.lab.auction.dao.LotDao;
+import com.egartech.lab.auction.dao.impl.hibernate.LotDao;
 import com.egartech.lab.auction.data.Lot;
-
 import java.util.List;
 
 public class LotService {
@@ -13,14 +11,13 @@ public class LotService {
         lotDao = new LotDao();
     }
 
-    public void persist(Lot entity) {
+    public void save(Lot entity) {
         lotDao.openCurrentSessionwithTransaction();
-        lotDao.persist(entity);
+        lotDao.save(entity);
         lotDao.closeCurrentSessionwithTransaction();
     }
 
     public void update(Lot entity) {
-
         lotDao.openCurrentSessionwithTransaction();
         lotDao.update(entity);
         lotDao.closeCurrentSessionwithTransaction();
@@ -56,16 +53,15 @@ public class LotService {
         return lotDao;
     }
 
-    public boolean isNameUnique(String name){
+    public boolean isNameUnique(String name) {
         boolean unique = true;
         name = name.trim();
         List<Lot> lots = findAll();
         for (Lot lot: lots) {
-            if(lot.getName().equals(name)){
+            if (lot.getName().equals(name)) {
                 unique = false;
             };
         }
-
         return unique;
     }
 }

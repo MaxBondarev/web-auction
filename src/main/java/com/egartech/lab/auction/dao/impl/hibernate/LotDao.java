@@ -1,17 +1,16 @@
-package com.egartech.lab.auction.dao;
+package com.egartech.lab.auction.dao.impl.hibernate;
 
 import java.util.List;
-
 import com.egartech.lab.auction.HibernateUtil;
+import com.egartech.lab.auction.dao.DaoInterface;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.service.BetService;
 import org.hibernate.*;
 import com.egartech.lab.auction.data.Lot;
 
 
-public class LotDao implements LotDaoInterface<Lot, String>  {
+public class LotDao implements DaoInterface<Lot, String> {
     private Session currentSession;
-
     private Transaction currentTransaction;
 
     public LotDao() {
@@ -53,13 +52,13 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
         this.currentTransaction = currentTransaction;
     }
 
-    public void persist(Lot entity) {
+    public void save(Lot entity) {
         getCurrentSession().save(entity);
     }
 
-
-    public Integer findIdMaxPriceLotBet(Lot entity){
-        Integer intId = (Integer) getCurrentSession().createQuery("select id from Bet where lot_id=:lotid and price=" +
+    public Integer findIdMaxPriceLotBet(Lot entity) {
+        Integer intId = (Integer) getCurrentSession().createQuery(
+                "select id from Bet where lot_id=:lotid and price=" +
                 "(select max(price) from Bet where lot_id=:lotid) ")
                 .setParameter("lotid", entity.getId()).list().get(0);
         return intId;
@@ -73,7 +72,8 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
     }
 
     public Lot findById(String id) {
-        Lot lot = (Lot) getCurrentSession().get(Lot.class, Integer.parseInt(id));
+        Lot lot = (Lot) getCurrentSession().get(Lot.class,
+                Integer.parseInt(id));
         return lot;
     }
 
@@ -83,7 +83,8 @@ public class LotDao implements LotDaoInterface<Lot, String>  {
 
     @SuppressWarnings("unchecked")
     public List<Lot> findAll() {
-        List<Lot> lots = (List<Lot>) getCurrentSession().createQuery("from Lot").list();
+        List<Lot> lots = (List<Lot>) getCurrentSession()
+                .createQuery("from Lot").list();
         return lots;
     }
 

@@ -6,7 +6,6 @@ import java.util.Set;
 @Entity
 @Table(name = "lots", schema = "new_schema")
 public class Lot {
-
     private int id;
     private String name;
     private Bet bet;
@@ -33,7 +32,6 @@ public class Lot {
         this.name = name;
     }
 
-
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bet_id", nullable = true)
     public Bet getBet() {
@@ -43,7 +41,6 @@ public class Lot {
     public void setBet(Bet bet) {
         this.bet = bet;
     }
-
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "lot_id", nullable = true)
@@ -58,14 +55,10 @@ public class Lot {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if ((o == null) || (getClass() != o.getClass())) return false;
         Lot that = (Lot) o;
-
         if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
+        return name != null ? name.equals(that.name) : that.name == null;
     }
 
     @Override

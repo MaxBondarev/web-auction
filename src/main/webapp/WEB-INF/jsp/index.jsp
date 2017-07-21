@@ -23,15 +23,15 @@
     <div class="right">
         <div>
             <b>Hello<b>
-                    <%
-                 HttpSession hSession = request.getSession();
-                 if(hSession.getAttribute("user") != null){
-                     User user = (User) hSession.getAttribute("user");
-             %>
-                <b><%=user.getLogin()%>!<b>
-                        <%} else {%>
-                    <b> guest!<b>
-                            <%}%>
+                <%
+                    HttpSession hSession = request.getSession();
+                    if(hSession.getAttribute("user") != null) {
+                        User user = (User) hSession.getAttribute("user");
+                %>
+                        <b><%=user.getLogin()%>!<b>
+                <%} else {%>
+                        <b> guest!<b>
+                <%  }%>
         </div>
         <div>
             <a href="/LogOut">Log Out</a>
