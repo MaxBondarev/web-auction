@@ -56,9 +56,7 @@ public class RegistrationCommand extends FrontCommand {
             }
 
             //Create new user
-            User newUser = new User();
-            newUser.setLogin(login);
-            newUser.setPassword(password);
+            User newUser = new User(login, password);
 
             //Save to DB
             UserService userService = new UserService();
