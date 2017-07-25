@@ -1,6 +1,8 @@
 package com.egartech.lab.auction;
 
+import com.egartech.lab.auction.commands.CreateLotCommand;
 import com.egartech.lab.auction.commands.FrontCommand;
+import com.egartech.lab.auction.commands.RegistrationCommand;
 import com.egartech.lab.auction.commands.UnknownCommand;
 import java.io.IOException;
 import javax.servlet.ServletContext;
@@ -28,7 +30,8 @@ public class FrontControllerServlet extends HttpServlet {
 
     private void startFrontController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         FrontCommand command = FrontCommandFactory.getFrontCommand(req);
-        command.init(getServletContext(), req, resp);
-        command.process();
+            command.init(getServletContext(), req, resp);
+            command.doStrategy();
+            command.process();
     }
 }

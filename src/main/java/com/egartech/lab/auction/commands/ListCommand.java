@@ -13,16 +13,8 @@ import java.util.List;
 import java.util.Timer;
 
 public class ListCommand extends FrontCommand {
+
     @Override
     public void process() throws ServletException, IOException {
-        HttpSession hSession = request.getSession();
-        if (hSession.getAttribute("user") != null) {
-            LotService lotService = new LotService();
-            List<Lot> lots = lotService.findAll();
-            request.setAttribute("lots", lots);
-            forward("list");
-        } else {
-            forward("index");
-        }
     }
 }

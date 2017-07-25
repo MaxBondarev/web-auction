@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CheckinCommand extends FrontCommand {
+
     @Override
     public void process() throws ServletException, IOException {
         forward("checkin");

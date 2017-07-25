@@ -15,50 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class NewBetCommand extends FrontCommand  {
-    @Override
-    public void init(
-            ServletContext servletContext,
-            HttpServletRequest req,
-            HttpServletResponse resp
-    ) {
-        this.context = servletContext;
-        this.request = req;
-        this.response = resp;
-    }
+
     public void process() throws ServletException, IOException {
-        try {
-            Double betPrice = Double.parseDouble(
-                    request.getParameter("bet_price")
-            );
-            if ((betPrice == null) || (betPrice <= 0)) {
-                request.setAttribute("error",
-                        "Error! The bet must be greater than zero!");
-                ListCommand lc = new ListCommand();
-                lc.init(context, request, response);
-                lc.process();
-            } else {
-                request.setAttribute("error", "");
-                Bet bet = new Bet();
-                bet.setPrice(betPrice);
-                HttpSession session = request.getSession();
-                User user = (User) session.getAttribute("user");
-                bet.setUser(user);
-                LotService lotService = new LotService();
-                Lot lot = lotService.findById(
-                        request.getParameter("lot_id"));
-                bet.setLot(lot);
-                BetService betService = new BetService();
-                betService.save(bet, lot);
-                ListCommand lc = new ListCommand();
-                lc.init(context, request, response);
-                lc.process();
-            }
-        } catch (Exception e) {
-            request.setAttribute("error", "Error! Some error!");
-            System.out.println(e.toString());
-            ListCommand lc = new ListCommand();
-            lc.init(context, request, response);
-            lc.process();
-        }
     }
 }

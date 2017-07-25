@@ -1,6 +1,7 @@
 package com.egartech.lab.auction.commands;
 
 
+import com.egartech.lab.auction.Strategy.StrategyInterface;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,9 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public abstract class FrontCommand {
+
+    public StrategyInterface strategy;
     protected ServletContext context;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
+
+    public void setStrategy(StrategyInterface strategy){
+        this.strategy = strategy;
+    }
 
     public void init(
             ServletContext servletContext,
@@ -24,6 +31,12 @@ public abstract class FrontCommand {
     }
 
     public abstract void process() throws ServletException, IOException;
+
+    public void doStrategy() throws ServletException, IOException {
+        if (strategy != null) {
+            strategy.doLogic(context, request, response);
+        }
+    }
 
     protected void forward(String target) throws ServletException, IOException {
         target = String.format("/WEB-INF/jsp/%s.jsp", target);

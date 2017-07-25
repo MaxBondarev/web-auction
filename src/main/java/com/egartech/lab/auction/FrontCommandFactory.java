@@ -1,5 +1,6 @@
 package com.egartech.lab.auction;
 
+import com.egartech.lab.auction.Strategy.*;
 import com.egartech.lab.auction.commands.*;
 import com.egartech.lab.auction.commands.FrontCommand;
 import javax.servlet.ServletContext;
@@ -8,33 +9,39 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FrontCommandFactory {
     public static FrontCommand getFrontCommand(HttpServletRequest req) {
-        try {
             switch (req.getRequestURI()) {
                 case "/":
+                    return new IndexCommand();
+                case "/Index":
                     return new IndexCommand();
                 case "/LogOut":
                     return new IndexCommand();
                 case "/NewLot":
                     return new NewLotCommand();
-                case "/NewBet":
-                    return new NewBetCommand();
                 case "/Checkin":
                     return new CheckinCommand();
+                case "/NewBet":
+                    NewBetCommand newBetCommand = new NewBetCommand();
+                    newBetCommand.setStrategy(new NewBetStrategy());
+                    return newBetCommand;
                 case "/CreateLot":
-                    return new CreateLotCommand();
+                    CreateLotCommand createLotCommand = new CreateLotCommand();
+                    createLotCommand.setStrategy(new CreateLotStrategy());
+                    return createLotCommand;
                 case "/List":
-                    return new ListCommand();
+                    ListCommand listCommand = new ListCommand();
+                    listCommand.setStrategy(new ListStrategy());
+                    return listCommand;
                 case "/Login":
-                    return new LoginCommand();
+                    LoginCommand loginCommand = new LoginCommand();
+                    loginCommand.setStrategy(new LoginStrategy());
+                    return loginCommand;
                 case "/Registration":
-                    return new RegistrationCommand();
-                case "/Index":
-                    return new IndexCommand();
+                    RegistrationCommand regCommand = new RegistrationCommand();
+                    regCommand.setStrategy(new RegistrationStrategy());
+                    return regCommand;
                 default:
                     return new IndexCommand();
             }
-        }catch (Exception e) {
-            return new IndexCommand();
-        }
     }
 }
