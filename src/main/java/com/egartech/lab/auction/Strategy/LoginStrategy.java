@@ -1,5 +1,6 @@
 package com.egartech.lab.auction.Strategy;
 
+import com.egartech.lab.auction.FrontControllerServlet;
 import com.egartech.lab.auction.commands.ListCommand;
 import com.egartech.lab.auction.data.User;
 import com.egartech.lab.auction.service.UserService;
@@ -65,10 +66,11 @@ public class LoginStrategy implements StrategyInterface {
                 //Forward List
                 ListCommand lc = new ListCommand();
                 lc.init(context, request, response);
+                lc.setStrategy(new ListStrategy());
+                lc.doStrategy();
                 lc.process();
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
             request.setAttribute("pasError", "Some error!");
             request.getRequestDispatcher("/WEB-INF/jsp/index.jsp")
                     .forward(request, response);
