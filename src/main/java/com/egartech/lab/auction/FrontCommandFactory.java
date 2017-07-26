@@ -21,25 +21,15 @@ public class FrontCommandFactory {
                 case "/Checkin":
                     return new CheckinCommand();
                 case "/NewBet":
-                    NewBetCommand newBetCommand = new NewBetCommand();
-                    newBetCommand.setStrategy(new NewBetStrategy());
-                    return newBetCommand;
+                    return new NewBetCommand();
                 case "/CreateLot":
-                    CreateLotCommand createLotCommand = new CreateLotCommand();
-                    createLotCommand.setStrategy(new CreateLotStrategy());
-                    return createLotCommand;
+                    return new CreateLotCommand();
                 case "/List":
-                    ListCommand listCommand = new ListCommand();
-                    listCommand.setStrategy(new ListStrategy());
-                    return listCommand;
+                    return new ListCommand();
                 case "/Login":
-                    LoginCommand loginCommand = new LoginCommand();
-                    loginCommand.setStrategy(new LoginStrategy());
-                    return loginCommand;
+                    return new LoginCommand();
                 case "/Registration":
-                    RegistrationCommand regCommand = new RegistrationCommand();
-                    regCommand.setStrategy(new RegistrationStrategy());
-                    return regCommand;
+                    return new RegistrationCommand();
                 default:
                     return new IndexCommand();
             }

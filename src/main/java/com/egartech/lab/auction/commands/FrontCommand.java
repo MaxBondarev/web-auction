@@ -15,6 +15,7 @@ public abstract class FrontCommand {
     protected ServletContext context;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
+    final String LINK = "/WEB-INF/jsp/%s.jsp";
 
     public void setStrategy(StrategyInterface strategy){
         this.strategy = strategy;
@@ -39,7 +40,7 @@ public abstract class FrontCommand {
     }
 
     protected void forward(String target) throws ServletException, IOException {
-        target = String.format("/WEB-INF/jsp/%s.jsp", target);
+        target = String.format(LINK, target);
         RequestDispatcher dispatcher = context.getRequestDispatcher(target);
         dispatcher.forward(request, response);
     }
