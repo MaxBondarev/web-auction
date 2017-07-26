@@ -66,8 +66,6 @@ public class LoginStrategy implements StrategyInterface {
                 //Forward List
                 ListCommand lc = new ListCommand();
                 lc.init(context, request, response);
-                lc.setStrategy(new ListStrategy());
-                lc.doStrategy();
                 lc.process();
             }
         } catch (Exception e) {

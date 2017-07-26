@@ -32,8 +32,6 @@ public class NewBetStrategy implements StrategyInterface {
                         "Error! The bet must be greater than zero!");
                 ListCommand lc = new ListCommand();
                 lc.init(context, request, response);
-                lc.setStrategy(new ListStrategy());
-                lc.doStrategy();
                 lc.process();
             } else {
                 request.setAttribute("error", "");
@@ -50,8 +48,6 @@ public class NewBetStrategy implements StrategyInterface {
                 betService.save(bet, lot);
                 ListCommand lc = new ListCommand();
                 lc.init(context, request, response);
-                lc.setStrategy(new ListStrategy());
-                lc.doStrategy();
                 lc.process();
             }
         } catch (Exception e) {
@@ -59,8 +55,6 @@ public class NewBetStrategy implements StrategyInterface {
             System.out.println(e.toString());
             ListCommand lc = new ListCommand();
             lc.init(context, request, response);
-            lc.setStrategy(new ListStrategy());
-            lc.doStrategy();
             lc.process();
         }
     }

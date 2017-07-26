@@ -46,8 +46,6 @@ public class CreateLotStrategy implements StrategyInterface {
                         lotService.save(lot);
                         ListCommand lc = new ListCommand();
                         lc.init(context, request, response);
-                        lc.setStrategy(new ListStrategy());
-                        lc.doStrategy();
                         lc.process();
                     } catch (Exception e) {
                         System.out.println(e.toString());
