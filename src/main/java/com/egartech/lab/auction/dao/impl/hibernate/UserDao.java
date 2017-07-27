@@ -3,62 +3,14 @@ package com.egartech.lab.auction.dao.impl.hibernate;
 import java.util.List;
 import com.egartech.lab.auction.HibernateUtil;
 import com.egartech.lab.auction.dao.DaoInterface;
+import com.egartech.lab.auction.data.Bet;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.egartech.lab.auction.data.User;
 import org.hibernate.criterion.Restrictions;
 
-public class UserDao implements DaoInterface<User, String> {
-    private Session currentSession;
-    private Transaction currentTransaction;
-
-    public UserDao() {
-    }
-
-    public Session openCurrentSession() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionwithTransaction() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionwithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
-    public void save(User entity) {
-        getCurrentSession().save(entity);
-    }
-
-    public void update(User entity) {
-        getCurrentSession().update(entity);
-    }
+public class UserDao extends DaoAbstract<User, String>  {
 
     public User findById(String id) {
         User user = (User) getCurrentSession().get(User.class, id);
@@ -66,13 +18,10 @@ public class UserDao implements DaoInterface<User, String> {
     }
 
     public User findByLogin(String login) {
-        Criteria criteria = currentSession.createCriteria(User.class);
+        Criteria criteria = getCurrentSession().createCriteria(User.class);
         User user = (User) criteria.add(Restrictions.eq("login", login))
                 .uniqueResult();
         return user;
-    }
-    public void delete(User entity) {
-        getCurrentSession().delete(entity);
     }
 
     @SuppressWarnings("unchecked")

@@ -9,52 +9,8 @@ import org.hibernate.*;
 import com.egartech.lab.auction.data.Lot;
 
 
-public class LotDao implements DaoInterface<Lot, String> {
-    private Session currentSession;
-    private Transaction currentTransaction;
+public class LotDao extends DaoAbstract<Lot, String>  {
 
-    public LotDao() {
-    }
-
-    public Session openCurrentSession() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionwithTransaction() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionwithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
-    public void save(Lot entity) {
-        getCurrentSession().save(entity);
-    }
 
     public Integer findIdMaxPriceLotBet(Lot entity) {
         Integer intId = (Integer) getCurrentSession().createQuery(
@@ -64,6 +20,7 @@ public class LotDao implements DaoInterface<Lot, String> {
         return intId;
     }
 
+    @Override
     public void update(Lot entity) {
         BetService betService = new BetService();
         Bet bet = betService.findById(findIdMaxPriceLotBet(entity));
@@ -77,9 +34,6 @@ public class LotDao implements DaoInterface<Lot, String> {
         return lot;
     }
 
-    public void delete(Lot entity) {
-        getCurrentSession().delete(entity);
-    }
 
     @SuppressWarnings("unchecked")
     public List<Lot> findAll() {

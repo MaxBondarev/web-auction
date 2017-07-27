@@ -35,56 +35,7 @@ import com.egartech.lab.auction.data.Bet;
  * @since 1.2
  */
 
-public class BetDao implements DaoInterface<Bet, String> {
-    private Session currentSession;
-    private Transaction currentTransaction;
-
-    public BetDao() {
-    }
-
-    public Session openCurrentSession() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionwithTransaction() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionwithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
-    public void save(Bet entity) {
-        getCurrentSession().save(entity);
-    }
-
-    public void update(Bet entity) {
-        getCurrentSession().update(entity);
-    }
+public class BetDao  extends DaoAbstract<Bet, String>  {
 
     public Bet findById(String s) {
         return null;
@@ -93,10 +44,6 @@ public class BetDao implements DaoInterface<Bet, String> {
     public Bet findById(Integer id) {
         Bet bet = (Bet) getCurrentSession().get(Bet.class, id);
         return bet;
-    }
-
-    public void delete(Bet entity) {
-        getCurrentSession().delete(entity);
     }
 
     @SuppressWarnings("unchecked")
