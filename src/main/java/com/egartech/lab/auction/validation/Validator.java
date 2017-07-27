@@ -29,11 +29,13 @@ public class Validator {
             "already exist!";
     final static String TEXT_AUTH_ERROR = "To get to this page the " +
             "user must be authorized!";
+    final static String TEXT_BET_ERROR = "Error! The bet must be greater " +
+            "than zero!";
+    final static String TEXT_NULL = "";
 
     public static boolean checkAuth(String login,
                                     String password,
                                     HttpServletRequest request) {
-        Validator.request = null;
         Validator.request = request;
         if (isLoginCorrect(login) & isAuthLoginExist(login)) {
             if (isPasCorrect(password) & isPasEquals(login, password)) {
@@ -83,7 +85,6 @@ public class Validator {
     public static boolean checkReg(String login,
                                    String password,
                                    HttpServletRequest request) {
-        Validator.request = null;
         Validator.request = request;
         if (isLoginCorrect(login) & isLoginUniq(login) & isPasCorrect(password)) {
             return true;
@@ -154,12 +155,31 @@ public class Validator {
     }
 
     public static boolean isUserInSession(HttpServletRequest request) {
+        Validator.request = request;
         HttpSession hSession = request.getSession();
         if (hSession.getAttribute("user") == null) {
             request.setAttribute(ERROR, TEXT_AUTH_ERROR);
             return false;
         } else {
             return true;
+        }
+    }
+
+    public static boolean checkBet(HttpServletRequest request) {
+        Validator.request = request;
+        if (request.getParameter("bet_price") == "") {
+            request.setAttribute(ERROR, TEXT_BET_ERROR);
+            return false;
+        } else {
+            Double betPrice = Double.parseDouble(
+                    request.getParameter("bet_price"));
+            if(betPrice <= 0){
+                request.setAttribute(ERROR, TEXT_BET_ERROR);
+                return false;
+            } else {
+                request.setAttribute(ERROR, TEXT_NULL);
+                return true;
+            }
         }
     }
 }
