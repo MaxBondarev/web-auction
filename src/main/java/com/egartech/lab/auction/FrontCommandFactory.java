@@ -1,11 +1,9 @@
 package com.egartech.lab.auction;
 
-import com.egartech.lab.auction.Strategy.*;
 import com.egartech.lab.auction.commands.*;
 import com.egartech.lab.auction.commands.FrontCommand;
-import javax.servlet.ServletContext;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class FrontCommandFactory {
     public static FrontCommand getFrontCommand(HttpServletRequest req) {
@@ -15,7 +13,7 @@ public class FrontCommandFactory {
                 case "/Index":
                     return new IndexCommand();
                 case "/LogOut":
-                    return new IndexCommand();
+                    return new LogOutCommand();
                 case "/NewLot":
                     return new NewLotCommand();
                 case "/Checkin":

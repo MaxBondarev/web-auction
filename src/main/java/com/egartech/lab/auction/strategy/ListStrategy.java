@@ -1,7 +1,6 @@
-package com.egartech.lab.auction.Strategy;
+package com.egartech.lab.auction.strategy;
 
 
-import com.egartech.lab.auction.commands.FrontCommand;
 import com.egartech.lab.auction.data.Lot;
 import com.egartech.lab.auction.service.LotService;
 
@@ -15,6 +14,9 @@ import java.util.List;
 
 public class ListStrategy implements StrategyInterface {
 
+    final String LINK_LIST = "/WEB-INF/jsp/list.jsp";
+    final String LINK_INDEX = "/WEB-INF/jsp/index.jsp";
+
     @Override
     public void doLogic(
             ServletContext context,
@@ -26,10 +28,10 @@ public class ListStrategy implements StrategyInterface {
             LotService lotService = new LotService();
             List<Lot> lots = lotService.findAll();
             request.setAttribute("lots", lots);
-            request.getRequestDispatcher("/WEB-INF/jsp/list.jsp")
+            request.getRequestDispatcher(LINK_LIST)
                     .forward(request, response);
         } else {
-            request.getRequestDispatcher("/WEB-INF/jsp/index.jsp")
+            request.getRequestDispatcher(LINK_INDEX)
                     .forward(request, response);
         }
     }

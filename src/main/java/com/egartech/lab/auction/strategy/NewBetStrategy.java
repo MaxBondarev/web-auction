@@ -1,4 +1,4 @@
-package com.egartech.lab.auction.Strategy;
+package com.egartech.lab.auction.strategy;
 
 import com.egartech.lab.auction.commands.ListCommand;
 import com.egartech.lab.auction.data.Bet;

@@ -1,6 +1,6 @@
 package com.egartech.lab.auction.commands;
 
-import com.egartech.lab.auction.Strategy.StrategyInterface;
+import com.egartech.lab.auction.strategy.StrategyInterface;
 
 import javax.servlet.ServletException;
 import java.io.IOException;

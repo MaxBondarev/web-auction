@@ -1,7 +1,7 @@
 package com.egartech.lab.auction.commands;
 
 
-import com.egartech.lab.auction.Strategy.StrategyInterface;
+import com.egartech.lab.auction.strategy.StrategyInterface;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

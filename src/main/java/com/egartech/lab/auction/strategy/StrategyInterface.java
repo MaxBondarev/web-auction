@@ -1,4 +1,4 @@
-package com.egartech.lab.auction.Strategy;
+package com.egartech.lab.auction.strategy;
 
 
 import javax.servlet.ServletContext;

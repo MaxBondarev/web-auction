@@ -1,14 +1,9 @@
 package com.egartech.lab.auction.commands;
 
-import com.egartech.lab.auction.Strategy.CreateLotStrategy;
-import com.egartech.lab.auction.Strategy.StrategyInterface;
-import com.egartech.lab.auction.data.Lot;
-import com.egartech.lab.auction.service.LotService;
+import com.egartech.lab.auction.strategy.CreateLotStrategy;
+import com.egartech.lab.auction.strategy.StrategyInterface;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 

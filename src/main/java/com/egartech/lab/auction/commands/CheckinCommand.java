@@ -1,10 +1,8 @@
 package com.egartech.lab.auction.commands;
 
-import com.egartech.lab.auction.Strategy.StrategyInterface;
+import com.egartech.lab.auction.strategy.StrategyInterface;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CheckinCommand extends FrontCommand {
