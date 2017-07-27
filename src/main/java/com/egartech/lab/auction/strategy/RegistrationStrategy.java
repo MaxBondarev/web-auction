@@ -37,8 +37,7 @@ public class RegistrationStrategy implements StrategyInterface {
                 session.setAttribute("user", newUser);
 
                 //Forward List
-                ListCommand lc = new ListCommand();
-                lc.init(context, request, response);
+                ListCommand lc = new ListCommand(context, request, response);
                 lc.process();
             } else {
                 request.getRequestDispatcher(CHECKIN)

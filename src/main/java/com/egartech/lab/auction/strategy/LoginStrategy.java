@@ -23,7 +23,7 @@ public class LoginStrategy implements StrategyInterface {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-
+            System.out.println("LoginStrategy works!");
             //Validation
             String login= request.getParameter("login");
             String password= request.getParameter("password");
@@ -34,8 +34,7 @@ public class LoginStrategy implements StrategyInterface {
                 session.setAttribute("user", user);
 
                 //Forward List
-                ListCommand lc = new ListCommand();
-                lc.init(context, request, response);
+                ListCommand lc = new ListCommand(context, request, response);
                 lc.process();
             } else {
                 request.getRequestDispatcher(LINK_INDEX)

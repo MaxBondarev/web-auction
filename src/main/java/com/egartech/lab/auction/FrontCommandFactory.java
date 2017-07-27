@@ -3,33 +3,40 @@ package com.egartech.lab.auction;
 import com.egartech.lab.auction.commands.*;
 import com.egartech.lab.auction.commands.FrontCommand;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class FrontCommandFactory {
-    public static FrontCommand getFrontCommand(HttpServletRequest req) {
+    public static FrontCommand getFrontCommand(ServletContext con,
+                                               HttpServletRequest req,
+                                               HttpServletResponse resp
+    ) throws ServletException, IOException {
             switch (req.getRequestURI()) {
                 case "/":
-                    return new IndexCommand();
+                    return new IndexCommand(con, req, resp);
                 case "/Index":
-                    return new IndexCommand();
+                    return new IndexCommand(con, req, resp);
                 case "/LogOut":
-                    return new LogOutCommand();
+                    return new LogOutCommand(con, req, resp);
                 case "/NewLot":
-                    return new NewLotCommand();
+                    return new NewLotCommand(con, req, resp);
                 case "/Checkin":
-                    return new CheckinCommand();
+                    return new CheckinCommand(con, req, resp);
                 case "/NewBet":
-                    return new NewBetCommand();
+                    return new NewBetCommand(con, req, resp);
                 case "/CreateLot":
-                    return new CreateLotCommand();
+                    return new CreateLotCommand(con, req, resp);
                 case "/List":
-                    return new ListCommand();
+                    return new ListCommand(con, req, resp);
                 case "/Login":
-                    return new LoginCommand();
+                    return new LoginCommand(con, req, resp);
                 case "/Registration":
-                    return new RegistrationCommand();
+                    return new RegistrationCommand(con, req, resp);
                 default:
-                    return new IndexCommand();
+                    return new IndexCommand(con, req, resp);
             }
     }
 }

@@ -23,21 +23,20 @@ public class CreateLotStrategy implements StrategyInterface {
             HttpServletResponse response
     ) throws ServletException, IOException {
 
-                //Validation
-                String lotname = request.getParameter("name");
+        //Validation
+        String lotname = request.getParameter("name");
 
-                if(Validator.checkNewLot(lotname, request)){
-                    Lot lot = new Lot();
-                    lot.setName(lotname);
-                    LotService lotService = new LotService();
-                    lotService.save(lot);
-                    ListCommand lc = new ListCommand();
-                    lc.init(context, request, response);
-                    lc.process();
-                } else {
-                    request.getRequestDispatcher(LINK_NEW_LOT)
-                            .forward(request, response);
-                }
+        if(Validator.checkNewLot(lotname, request)){
+            Lot lot = new Lot();
+            lot.setName(lotname);
+            LotService lotService = new LotService();
+            lotService.save(lot);
+            ListCommand lc = new ListCommand(context, request, response);
+            lc.process();
+        } else {
+            request.getRequestDispatcher(LINK_NEW_LOT)
+                    .forward(request, response);
+        }
     }
 
 }

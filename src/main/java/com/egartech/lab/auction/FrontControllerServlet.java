@@ -29,8 +29,7 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
     private void startFrontController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        FrontCommand command = FrontCommandFactory.getFrontCommand(req);
-            command.init(getServletContext(), req, resp);
+        FrontCommand command = FrontCommandFactory.getFrontCommand(getServletContext(), req, resp);
             command.process();
     }
 }

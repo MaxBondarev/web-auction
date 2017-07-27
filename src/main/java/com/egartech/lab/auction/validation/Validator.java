@@ -1,11 +1,14 @@
 package com.egartech.lab.auction.validation;
 
+import com.egartech.lab.auction.data.Lot;
 import com.egartech.lab.auction.data.User;
 import com.egartech.lab.auction.service.UserService;
 import com.egartech.lab.auction.service.LotService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class Validator {
     public static HttpServletRequest request;
@@ -24,6 +27,8 @@ public class Validator {
             "contain single spaces and must contain letters!";
     private static String textLotErrorExist = "Error! Lot name %s " +
             "already exist!";
+    final static String TEXT_AUTH_ERROR = "To get to this page the " +
+            "user must be authorized!";
 
     public static boolean checkAuth(String login,
                                     String password,
@@ -145,6 +150,16 @@ public class Validator {
             String msg = String.format(textLotErrorExist, lotname);
             request.setAttribute(ERROR, msg);
             return false;
+        }
+    }
+
+    public static boolean isUserInSession(HttpServletRequest request) {
+        HttpSession hSession = request.getSession();
+        if (hSession.getAttribute("user") == null) {
+            request.setAttribute(ERROR, TEXT_AUTH_ERROR);
+            return false;
+        } else {
+            return true;
         }
     }
 }

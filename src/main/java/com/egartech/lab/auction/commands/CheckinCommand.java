@@ -2,17 +2,27 @@ package com.egartech.lab.auction.commands;
 
 import com.egartech.lab.auction.strategy.StrategyInterface;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CheckinCommand extends FrontCommand {
 
     final String ADRESS = "checkin";
-    private StrategyInterface privateStrategy;
 
-    public CheckinCommand(){
-        if(privateStrategy != null){
-            setStrategy(privateStrategy);
+    public CheckinCommand(ServletContext context,
+                          HttpServletRequest request,
+                          HttpServletResponse response
+    ) throws ServletException, IOException {
+        super(context, request, response);
+
+        if(strategy != null){
+            setStrategy(strategy);
+        }
+        if(protectedLink != false){
+            setProtectedLink(protectedLink);
         }
     }
 
