@@ -23,7 +23,7 @@ public class LoginStrategy implements StrategyInterface {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-            System.out.println("LoginStrategy works!");
+
             //Validation
             String login= request.getParameter("login");
             String password= request.getParameter("password");

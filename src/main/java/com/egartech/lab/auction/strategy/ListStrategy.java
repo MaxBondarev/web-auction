@@ -23,17 +23,11 @@ public class ListStrategy implements StrategyInterface {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        HttpSession hSession = request.getSession();
-        if (hSession.getAttribute("user") != null) {
             LotService lotService = new LotService();
             List<Lot> lots = lotService.findAll();
             request.setAttribute("lots", lots);
             request.getRequestDispatcher(LINK_LIST)
                     .forward(request, response);
-        } else {
-            request.getRequestDispatcher(LINK_INDEX)
-                    .forward(request, response);
-        }
     }
 
 
