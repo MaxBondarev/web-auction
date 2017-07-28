@@ -55,16 +55,32 @@ public abstract class DaoAbstract<T, Id extends Serializable> {
     public void update(T entity) {
         getCurrentSession().update(entity);
     }
-/*
-    public T findById(Id id) {
-        T bet = (T) getCurrentSession().get(T, id);
+
+    public T findById(Id id, T entity) {
+        if(id.getClass() != Integer.class){
+            Integer intId = Integer.parseInt((String) id);
+            T bet = (T) getCurrentSession().get(entity.getClass().getName(), intId);
+            return bet;
+        }
+        T bet = (T) getCurrentSession().get(entity.getClass().getName(), id);
         return bet;
     }
-    */
 
+    @SuppressWarnings("unchecked")
+    public List<T> findAll(T entity) {
+        List<T> users = (List<T>) getCurrentSession()
+                .createQuery("from " + entity.getClass().getSimpleName()).list();
+        return users;
+    }
 
     public void delete(T entity) {
         getCurrentSession().delete(entity);
     }
 
+    public void deleteAll(T t) {
+        List<T> entityList = findAll(t);
+        for (T entity : entityList) {
+            delete(entity);
+        }
+    }
 }

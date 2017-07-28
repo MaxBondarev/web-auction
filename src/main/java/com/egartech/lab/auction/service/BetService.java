@@ -30,27 +30,27 @@ public class BetService {
 
     public Bet findById(Integer id) {
         betDao.openCurrentSession();
-        Bet bet = betDao.findById(id);
+        Bet bet = betDao.findById(String.valueOf(id), new Bet());
         return bet;
     }
 
     public void delete(String id) {
         betDao.openCurrentSessionwithTransaction();
-        Bet bet = betDao.findById(id);
+        Bet bet = betDao.findById(id, new Bet());
         betDao.delete(bet);
         betDao.closeCurrentSessionwithTransaction();
     }
 
     public List<Bet> findAll() {
         betDao.openCurrentSession();
-        List<Bet> bets = betDao.findAll();
+        List<Bet> bets = betDao.findAll(new Bet());
         betDao.closeCurrentSession();
         return bets;
     }
 
     public void deleteAll() {
         betDao.openCurrentSessionwithTransaction();
-        betDao.deleteAll();
+        betDao.deleteAll(new Bet());
         betDao.closeCurrentSessionwithTransaction();
     }
 

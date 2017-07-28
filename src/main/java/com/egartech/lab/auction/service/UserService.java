@@ -26,7 +26,7 @@ public class UserService {
 
     public User findById(String id) {
         userDao.openCurrentSession();
-        User user = userDao.findById(id);
+        User user = userDao.findById(id, new User());
         userDao.closeCurrentSession();
         return user;
     }
@@ -40,21 +40,21 @@ public class UserService {
 
     public void delete(String id) {
         userDao.openCurrentSessionwithTransaction();
-        User user = userDao.findById(id);
+        User user = userDao.findById(id, new User());
         userDao.delete(user);
         userDao.closeCurrentSessionwithTransaction();
     }
 
     public List<User> findAll() {
         userDao.openCurrentSession();
-        List<User> users = userDao.findAll();
+        List<User> users = userDao.findAll(new User());
         userDao.closeCurrentSession();
         return users;
     }
 
     public void deleteAll() {
         userDao.openCurrentSessionwithTransaction();
-        userDao.deleteAll();
+        userDao.deleteAll(new User());
         userDao.closeCurrentSessionwithTransaction();
     }
 

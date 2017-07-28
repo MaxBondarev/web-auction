@@ -37,26 +37,4 @@ import com.egartech.lab.auction.data.Bet;
 
 public class BetDao  extends DaoAbstract<Bet, String>  {
 
-    public Bet findById(String s) {
-        return null;
-    }
-
-    public Bet findById(Integer id) {
-        Bet bet = (Bet) getCurrentSession().get(Bet.class, id);
-        return bet;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Bet> findAll() {
-        List<Bet> bets = (List<Bet>) getCurrentSession()
-                .createQuery("from Bet").list();
-        return bets;
-    }
-
-    public void deleteAll() {
-        List<Bet> entityList = findAll();
-        for (Bet entity : entityList) {
-            delete(entity);
-        }
-    }
 }

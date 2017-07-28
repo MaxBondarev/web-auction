@@ -11,7 +11,6 @@ import com.egartech.lab.auction.data.Lot;
 
 public class LotDao extends DaoAbstract<Lot, String>  {
 
-
     public Integer findIdMaxPriceLotBet(Lot entity) {
         Integer intId = (Integer) getCurrentSession().createQuery(
                 "select id from Bet where lot_id=:lotid and price=" +
@@ -26,26 +25,5 @@ public class LotDao extends DaoAbstract<Lot, String>  {
         Bet bet = betService.findById(findIdMaxPriceLotBet(entity));
         entity.setBet(bet);
         getCurrentSession().update(entity);
-    }
-
-    public Lot findById(String id) {
-        Lot lot = (Lot) getCurrentSession().get(Lot.class,
-                Integer.parseInt(id));
-        return lot;
-    }
-
-
-    @SuppressWarnings("unchecked")
-    public List<Lot> findAll() {
-        List<Lot> lots = (List<Lot>) getCurrentSession()
-                .createQuery("from Lot").list();
-        return lots;
-    }
-
-    public void deleteAll() {
-        List<Lot> entityList = findAll();
-        for (Lot entity : entityList) {
-            delete(entity);
-        }
     }
 }

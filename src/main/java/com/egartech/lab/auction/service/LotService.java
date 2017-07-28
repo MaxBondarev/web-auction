@@ -25,27 +25,27 @@ public class LotService {
 
     public Lot findById(String id) {
         lotDao.openCurrentSession();
-        Lot lot = lotDao.findById(id);
+        Lot lot = lotDao.findById(id, new Lot());
         lotDao.closeCurrentSession();
         return lot;
     }
 
     public void delete(String id) {
         lotDao.openCurrentSessionwithTransaction();
-        Lot lot = lotDao.findById(id);
+        Lot lot = lotDao.findById(id, new Lot());
         lotDao.delete(lot);
         lotDao.closeCurrentSessionwithTransaction();
     }
 
     public List<Lot> findAll() {
         lotDao.openCurrentSession();
-        List<Lot> lots = lotDao.findAll();
+        List<Lot> lots = lotDao.findAll(new Lot());
         return lots;
     }
 
     public void deleteAll() {
         lotDao.openCurrentSessionwithTransaction();
-        lotDao.deleteAll();
+        lotDao.deleteAll(new Lot());
         lotDao.closeCurrentSessionwithTransaction();
     }
 
