@@ -55,7 +55,6 @@ public class LotService {
 
     public boolean isNameUnique(String name) {
         boolean unique = true;
-        //name = name.trim();
         List<Lot> lots = findAll();
         for (Lot lot: lots) {
             if (lot.getName().equals(name)) {

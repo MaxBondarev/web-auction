@@ -17,6 +17,14 @@ public class Bet {
     private User user;
     private Lot lot;
 
+    public Bet(){}
+
+    public Bet(double price,User user,Lot lot){
+        setPrice(price);
+        setUser(user);
+        setLot(lot);
+    }
+
     /**
      * id - Bet id from database.
      */
@@ -53,7 +61,7 @@ public class Bet {
     /**
      * lot - The {@link Lot} to which the Bet belongs.
      */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lot_id", nullable = false)
     public Lot getLot() {
         return lot;
@@ -69,7 +77,7 @@ public class Bet {
     /**
      * user - The {@link User} to which the Bet belongs.
      */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     public User getUser() {
         return user;

@@ -17,6 +17,12 @@ public class Lot {
     private Bet bet;
     private Set<Bet> bets;
 
+    public Lot(){}
+
+    public Lot(String name){
+        setName(name);
+    }
+
     /**
      * id - Lot id from database.
      */
@@ -53,7 +59,7 @@ public class Lot {
     /**
      * bet - the highest {@link Bet} of this Lot.
      */
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bet_id", nullable = true)
     public Bet getBet() {
         return bet;
@@ -69,7 +75,7 @@ public class Lot {
     /**
      * bets - Set of all {@link Bet} of this Lot.
      */
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "lot_id", nullable = true)
     public Set<Bet> getBets() {
         return bets;

@@ -28,15 +28,12 @@ public class NewBetStrategy implements StrategyInterface {
         if (Validator.checkBet(request)) {
             Double betPrice = Double.parseDouble(
                     request.getParameter("bet_price"));
-            Bet bet = new Bet();
-            bet.setPrice(betPrice);
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            bet.setUser(user);
             LotService lotService = new LotService();
             Lot lot = lotService.findById(
                     request.getParameter("lot_id"));
-            bet.setLot(lot);
+            Bet bet = new Bet(betPrice, user, lot);
             BetService betService = new BetService();
             betService.save(bet, lot);
         }

@@ -27,8 +27,7 @@ public class CreateLotStrategy implements StrategyInterface {
         String lotname = request.getParameter("name");
 
         if(Validator.checkNewLot(lotname, request)){
-            Lot lot = new Lot();
-            lot.setName(lotname);
+            Lot lot = new Lot(lotname);
             LotService lotService = new LotService();
             lotService.save(lot);
             ListCommand lc = new ListCommand(context, request, response);
