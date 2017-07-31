@@ -1,33 +1,63 @@
-package com.egartech.lab.auction.dao.impl.hibernate;
+package com.egartech.lab.auction.dao;
 
-import com.egartech.lab.auction.HibernateUtil;
+import com.egartech.lab.auction.dao.impl.hibernate.DAOFactory;
+import com.egartech.lab.auction.data.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
 public abstract class DAOAbstract<T, Id extends Serializable> {
     private Session currentSession;
     private Transaction currentTransaction;
+    private EntityManagerFactory emf;
+    public EntityManager em;
 
-    public Session openCurrentSession() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        return currentSession;
+/*
+    public User getUser(String login, String pass) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = cb.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.where(cb.equal(root.get("login"), login));
+        if (pass != null) {
+            query.where(cb.equal(root.get("pass"), pass));
+        }
+//		TypedQuery<User> q = em.createQuery("SELECT user FROM User user WHERE user.login = :login AND user.pass = :password", User.class);
+//		q.setParameter("login", login);
+//		q.setParameter("password", pass);
+        TypedQuery<User> q = em.createQuery(query);
+        List<User> result = q.getResultList();
+        return !result.isEmpty() ? result.get(0) : null;
+    }
+    */
+
+    public EntityManager openCurrentSession() {
+        emf = DAOFactory.createEMF();
+        em = emf.createEntityManager();
+        //currentSession = HibernateUtil.startSessionFactory().openSession();
+        return em;
     }
 
-    public Session openCurrentSessionwithTransaction() {
-        currentSession = HibernateUtil.startSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
+    public EntityManager openCurrentSessionwithTransaction(){
+        emf = DAOFactory.createEMF();
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
+        //currentTransaction = currentSession.beginTransaction();
+        return em;
     }
 
     public void closeCurrentSession() {
-        currentSession.close();
     }
 
     public void closeCurrentSessionwithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
+        em.getTransaction().commit();
     }
 
     public Session getCurrentSession() {

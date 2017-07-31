@@ -1,6 +1,9 @@
 package com.egartech.lab.auction.dao.impl.hibernate;
 
+import com.egartech.lab.auction.dao.DAOAbstract;
 import com.egartech.lab.auction.data.Bet;
+
+import javax.persistence.EntityManager;
 
 /**
  * An ordered collection (also known as a <i>sequence</i>).  The user of this
