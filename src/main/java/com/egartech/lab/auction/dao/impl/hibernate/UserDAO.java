@@ -14,11 +14,12 @@ public class UserDAO extends DAOAbstract<User, String> {
         Query query = em.createQuery("SELECT u FROM User u where u.login = :login");
         query.setParameter("login", login);
         //System.out.println(query.toString());
-                        User user = (User) query.getSingleResult();
-        System.out.println("user = " + user + ", password = " + user.getPassword());
+        if (query.getResultList().size() > 0) {
+            User user = (User) query.getResultList().get(0);
+            System.out.println("user = " + user + ", password = " + user.getPassword());
             //System.out.println(user.getLogin());
-
-        return user;
+        }
+        return new User();
     }
 
 
