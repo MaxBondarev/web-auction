@@ -1,14 +1,12 @@
 package com.egartech.lab.auction.dao.impl.hibernate;
 
-
 import com.egartech.lab.auction.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class DaoAbstract<T, Id extends Serializable> {
+public abstract class DAOAbstract<T, Id extends Serializable> {
     private Session currentSession;
     private Transaction currentTransaction;
 
@@ -59,7 +57,8 @@ public abstract class DaoAbstract<T, Id extends Serializable> {
     public T findById(Id id, T entity) {
         if(id.getClass() != Integer.class){
             Integer intId = Integer.parseInt((String) id);
-            T bet = (T) getCurrentSession().get(entity.getClass().getName(), intId);
+            T bet = (T) getCurrentSession().get(entity.getClass()
+                    .getName(), intId);
             return bet;
         }
         T bet = (T) getCurrentSession().get(entity.getClass().getName(), id);
@@ -69,7 +68,8 @@ public abstract class DaoAbstract<T, Id extends Serializable> {
     @SuppressWarnings("unchecked")
     public List<T> findAll(T entity) {
         List<T> users = (List<T>) getCurrentSession()
-                .createQuery("from " + entity.getClass().getSimpleName()).list();
+                .createQuery("from " + entity.getClass()
+                        .getSimpleName()).list();
         return users;
     }
 

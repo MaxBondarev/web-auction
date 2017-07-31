@@ -1,15 +1,11 @@
 package com.egartech.lab.auction.dao.impl.hibernate;
 
-import java.util.List;
-import com.egartech.lab.auction.HibernateUtil;
-import com.egartech.lab.auction.dao.DaoInterface;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.service.BetService;
-import org.hibernate.*;
 import com.egartech.lab.auction.data.Lot;
 
 
-public class LotDao extends DaoAbstract<Lot, String>  {
+public class LotDAO extends DAOAbstract<Lot, String> {
 
     public Integer findIdMaxPriceLotBet(Lot entity) {
         Integer intId = (Integer) getCurrentSession().createQuery(

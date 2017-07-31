@@ -1,17 +1,17 @@
 package com.egartech.lab.auction.service;
 
 
-import com.egartech.lab.auction.dao.impl.hibernate.BetDao;
+import com.egartech.lab.auction.dao.impl.hibernate.BetDAO;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.data.Lot;
 
 import java.util.List;
 
 public class BetService {
-    private static BetDao betDao;
+    private static BetDAO betDao;
 
     public BetService() {
-        betDao = new BetDao();
+        betDao = new BetDAO();
     }
 
     public void save(Bet entity, Lot lot) {
@@ -54,7 +54,7 @@ public class BetService {
         betDao.closeCurrentSessionwithTransaction();
     }
 
-    public BetDao betDao() {
+    public BetDAO betDao() {
         return betDao;
     }
     

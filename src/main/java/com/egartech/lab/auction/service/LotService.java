@@ -1,14 +1,14 @@
 package com.egartech.lab.auction.service;
 
-import com.egartech.lab.auction.dao.impl.hibernate.LotDao;
+import com.egartech.lab.auction.dao.impl.hibernate.LotDAO;
 import com.egartech.lab.auction.data.Lot;
 import java.util.List;
 
 public class LotService {
-    private static LotDao lotDao;
+    private static LotDAO lotDao;
 
     public LotService() {
-        lotDao = new LotDao();
+        lotDao = new LotDAO();
     }
 
     public void save(Lot entity) {
@@ -49,7 +49,7 @@ public class LotService {
         lotDao.closeCurrentSessionwithTransaction();
     }
 
-    public LotDao lotDao() {
+    public LotDAO lotDao() {
         return lotDao;
     }
 

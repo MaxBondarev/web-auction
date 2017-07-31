@@ -1,10 +1,5 @@
 package com.egartech.lab.auction.dao.impl.hibernate;
 
-import java.util.List;
-import com.egartech.lab.auction.HibernateUtil;
-import com.egartech.lab.auction.dao.DaoInterface;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import com.egartech.lab.auction.data.Bet;
 
 /**
@@ -35,6 +30,6 @@ import com.egartech.lab.auction.data.Bet;
  * @since 1.2
  */
 
-public class BetDao  extends DaoAbstract<Bet, String>  {
+public class BetDAO extends DAOAbstract<Bet, String> {
 
 }

@@ -4,7 +4,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+
 public class HibernateUtil {
+
     static boolean isSessionCreate = false;
     static SessionFactory sessionFactory;
 
@@ -17,7 +19,7 @@ public class HibernateUtil {
             return sessionFactory;
         }
     }
-    
+
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
         StandardServiceRegistryBuilder builder
@@ -27,9 +29,10 @@ public class HibernateUtil {
                 .buildSessionFactory(builder.build());
         return sessionFactory;
     }
-    
+
     public static void closeSessionFactory() {
         sessionFactory.close();
         isSessionCreate = false;
     }
+
 }

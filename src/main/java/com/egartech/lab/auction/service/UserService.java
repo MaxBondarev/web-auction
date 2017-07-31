@@ -1,15 +1,15 @@
 package com.egartech.lab.auction.service;
 
-import com.egartech.lab.auction.dao.impl.hibernate.UserDao;
+import com.egartech.lab.auction.dao.impl.hibernate.UserDAO;
 import com.egartech.lab.auction.data.User;
 
 import java.util.List;
 
 public class UserService {
-    private static UserDao userDao;
+    private static UserDAO userDao;
 
     public UserService() {
-        userDao = new UserDao();
+        userDao = new UserDAO();
     }
 
     public void save(User entity) {
@@ -58,7 +58,7 @@ public class UserService {
         userDao.closeCurrentSessionwithTransaction();
     }
 
-    public UserDao userDao() {
+    public UserDAO userDao() {
         return userDao;
     }
 
