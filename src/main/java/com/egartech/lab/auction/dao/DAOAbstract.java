@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -60,12 +61,12 @@ public abstract class DAOAbstract<T, Id extends Serializable> {
         em.getTransaction().commit();
     }
 
-    public Session getCurrentSession() {
-        return currentSession;
+    public EntityManager getEM() {
+        return em;
     }
 
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
+    public void setEM(EntityManager em) {
+        this.em = em;
     }
 
     public Transaction getCurrentTransaction() {
@@ -77,34 +78,33 @@ public abstract class DAOAbstract<T, Id extends Serializable> {
     }
 
     public void save(T entity) {
-        getCurrentSession().save(entity);
+        getEM().persist(entity);
     }
 
     public void update(T entity) {
-        getCurrentSession().update(entity);
+        getEM().merge(entity);
     }
 
     public T findById(Id id, T entity) {
         if(id.getClass() != Integer.class){
             Integer intId = Integer.parseInt((String) id);
-            T bet = (T) getCurrentSession().get(entity.getClass()
-                    .getName(), intId);
+            T bet = (T) getEM().find(entity.getClass(), intId);
             return bet;
         }
-        T bet = (T) getCurrentSession().get(entity.getClass().getName(), id);
+        T bet = (T) getEM().find(entity.getClass(), id);
         return bet;
     }
 
     @SuppressWarnings("unchecked")
     public List<T> findAll(T entity) {
-        List<T> users = (List<T>) getCurrentSession()
-                .createQuery("from " + entity.getClass()
-                        .getSimpleName()).list();
-        return users;
+        List<T> entityList = (List<T>) getEM().createQuery(
+                "SELECT u FROM " + entity.getClass().getSimpleName()
+                        + " u").getResultList();
+        return entityList;
     }
 
     public void delete(T entity) {
-        getCurrentSession().delete(entity);
+        getEM().remove(entity);
     }
 
     public void deleteAll(T t) {

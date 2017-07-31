@@ -9,10 +9,10 @@ import com.egartech.lab.auction.data.Lot;
 public class LotDAO extends DAOAbstract<Lot, String> {
 
     public Integer findIdMaxPriceLotBet(Lot entity) {
-        Integer intId = (Integer) getCurrentSession().createQuery(
+        Integer intId = (Integer) getEM().createQuery(
                 "select id from Bet where lot_id=:lotid and price=" +
                 "(select max(price) from Bet where lot_id=:lotid) ")
-                .setParameter("lotid", entity.getId()).list().get(0);
+                .setParameter("lotid", entity.getId()).getResultList().get(0);
         return intId;
     }
 
@@ -21,6 +21,6 @@ public class LotDAO extends DAOAbstract<Lot, String> {
         BetService betService = new BetService();
         Bet bet = betService.findById(findIdMaxPriceLotBet(entity));
         entity.setBet(bet);
-        getCurrentSession().update(entity);
+        getEM().merge(entity);
     }
 }
