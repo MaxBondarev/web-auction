@@ -77,4 +77,19 @@ public class LotService {
         lotDao.deleteAll(new Lot());
         lotDao.commitTransaction();
     }
+
+    /**
+     * Check is {@link Lot} name unique.
+     * @param name
+     */
+    public boolean isNameUnique(String name) {
+        boolean unique = true;
+        List<Lot> lots = findAll();
+        for (Lot lot: lots) {
+            if (lot.getName().equals(name)) {
+                unique = false;
+            };
+        }
+        return unique;
+    }
 }
