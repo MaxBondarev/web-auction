@@ -39,6 +39,7 @@ public class Validator {
      * @param login
      * @param password
      * @param request
+     * @return boolean
      */
     public static boolean checkAuth(String login,
                                     String password,
@@ -94,6 +95,7 @@ public class Validator {
      * @param login
      * @param password
      * @param request
+     * @return boolean
      */
     public static boolean checkReg(String login,
                                    String password,
@@ -140,6 +142,7 @@ public class Validator {
      * Validation of lotname.
      * @param lotName
      * @param request
+     * @return boolean
      */
     public static boolean checkNewLot(String lotName,
                                       HttpServletRequest request) {
@@ -175,6 +178,7 @@ public class Validator {
     /**
      * Checks if the user is in session
      * @param request
+     * @return boolean
      */
     public static boolean isUserInSession(HttpServletRequest request) {
         Validator.request = request;
@@ -190,6 +194,7 @@ public class Validator {
     /**
      * Checks whether the bet data are correct
      * @param request
+     * @return boolean
      */
     public static boolean checkBet(HttpServletRequest request) {
         Validator.request = request;

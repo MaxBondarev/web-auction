@@ -15,6 +15,14 @@ import java.io.IOException;
  * @author Max Bondarev.
  */
 public class FrontCommandFactory {
+
+    /**
+     * Returns the servlet corresponding to the query.
+     * @param con
+     * @param req
+     * @param resp
+     * @return instance of executing servlet
+     */
     public static FrontCommand getFrontCommand(ServletContext con,
                                                HttpServletRequest req,
                                                HttpServletResponse resp
