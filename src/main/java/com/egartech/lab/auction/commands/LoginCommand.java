@@ -21,6 +21,12 @@ public class LoginCommand extends FrontCommand  {
     StrategyInterface strategy = new LoginStrategy();
     boolean protectedLink = false;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public LoginCommand(ServletContext context,
                           HttpServletRequest request,
                           HttpServletResponse response
@@ -35,6 +41,9 @@ public class LoginCommand extends FrontCommand  {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     public void process() throws ServletException, IOException {
         doStrategy();
     }

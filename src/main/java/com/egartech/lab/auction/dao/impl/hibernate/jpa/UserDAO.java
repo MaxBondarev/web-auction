@@ -14,6 +14,7 @@ public class UserDAO extends DAOAbstract<User, String> {
     /**
      * Find {@link User} by login.
      * @param login
+     * @return user with login or user = null
      */
     public User findByLogin(String login) {
         User user = null;

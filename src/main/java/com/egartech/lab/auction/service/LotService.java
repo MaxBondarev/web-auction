@@ -42,6 +42,7 @@ public class LotService {
     /**
      * Find {@link Lot} by id.
      * @param id
+     * @return lot
      */
     public Lot findById(String id) {
         lotDao.useEntityManager();
@@ -62,6 +63,7 @@ public class LotService {
 
     /**
      * Find all {@link Lot}s.
+     * @return lots
      */
     public List<Lot> findAll() {
         lotDao.useEntityManager();
@@ -81,6 +83,7 @@ public class LotService {
     /**
      * Check is {@link Lot} name unique.
      * @param name
+     * @return unique
      */
     public boolean isNameUnique(String name) {
         boolean unique = true;

@@ -26,6 +26,7 @@ public class User {
 
     /**
      * id - User id from database.
+     * @return id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,7 @@ public class User {
 
     /**
      * id - User id from database.
+     * @param id
      */
     public void setId(int id) {
         this.id = id;
@@ -43,6 +45,7 @@ public class User {
 
     /**
      * login - User's login.
+     * @return login
      */
     @Basic
     @Column(name = "login")
@@ -52,6 +55,7 @@ public class User {
 
     /**
      * login - User's login.
+     * @param login
      */
     public void setLogin(String login) {
         this.login = login;
@@ -59,6 +63,7 @@ public class User {
 
     /**
      * password - User's password.
+     * @return password
      */
     @Basic
     @Column(name = "password")
@@ -68,6 +73,7 @@ public class User {
 
     /**
      * password - User's password.
+     * @param password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -75,6 +81,7 @@ public class User {
 
     /**
      * userBets - Set of user's {@link Bet}.
+     * @return userBets
      */
     @OneToMany
     @JoinColumn(name = "user_id", nullable = true)
@@ -84,6 +91,7 @@ public class User {
 
     /**
      * userBets - Set of user's {@link Bet}.
+     * @param bets
      */
     public void setUserBets(Set<Bet> bets) {
         this.userBets = userBets;

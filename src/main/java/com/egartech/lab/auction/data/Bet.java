@@ -26,6 +26,7 @@ public class Bet {
 
     /**
      * id - Bet id from database.
+     * @return id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,7 @@ public class Bet {
 
     /**
      * id - Bet id from database.
+     * @param id
      */
     public void setId(int id) {
         this.id = id;
@@ -43,6 +45,7 @@ public class Bet {
 
     /**
      * price - price of the Bet.
+     * @return price
      */
     @Basic
     @Column(name = "price")
@@ -52,6 +55,7 @@ public class Bet {
 
     /**
      * price - price of the Bet.
+     * @param price
      */
     public void setPrice(double price) {
         this.price = price;
@@ -59,6 +63,7 @@ public class Bet {
 
     /**
      * lot - The {@link Lot} to which the Bet belongs.
+     * @return lot
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lot_id", nullable = false)
@@ -68,6 +73,7 @@ public class Bet {
 
     /**
      * lot - The {@link Lot} to which the Bet belongs.
+     * @param lot
      */
     public void setLot(Lot lot) {
         this.lot = lot;
@@ -75,6 +81,7 @@ public class Bet {
 
     /**
      * user - The {@link User} to which the Bet belongs.
+     * @return user
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -84,6 +91,7 @@ public class Bet {
 
     /**
      * user - The {@link User} to which the Bet belongs.
+     * @param user
      */
     public void setUser(User user) {
         this.user = user;

@@ -26,14 +26,12 @@ public abstract class FrontCommand {
     final String LINK_INDEX = "/WEB-INF/jsp/index.jsp";
     public boolean protectedLink = false;
 
-    public void setStrategy(StrategyInterface strategy){
-        this.strategy = strategy;
-    }
-
-    public void setProtectedLink(boolean protectedLink){
-        this.protectedLink = protectedLink;
-    }
-
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public FrontCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -41,13 +39,38 @@ public abstract class FrontCommand {
         init (context, request, response);
     }
 
+    /**
+     * Initialisation of parameters.
+     * @param context
+     * @param request
+     * @param response
+     */
     private void init(ServletContext context, HttpServletRequest request,
-            HttpServletResponse response) {
+                      HttpServletResponse response) {
         this.context = context;
         this.request = request;
         this.response = response;
     }
 
+    /**
+     * Set strategy.
+     * @param strategy
+     */
+    public void setStrategy(StrategyInterface strategy){
+        this.strategy = strategy;
+    }
+
+    /**
+     * Set boolean value to know need check user existence in session or not.
+     * @param protectedLink
+     */
+    public void setProtectedLink(boolean protectedLink){
+        this.protectedLink = protectedLink;
+    }
+
+    /**
+     * Checks is User authorized
+     */
     private void isUserAuthorized() throws ServletException, IOException {
         if (!Validator.isUserInSession(request)){
             RequestDispatcher dispatcher = context
@@ -56,6 +79,9 @@ public abstract class FrontCommand {
         }
     }
 
+    /**
+     * Starts using the strategy if necessary
+     */
     public void doStrategy() throws ServletException, IOException {
         if(protectedLink){
             isUserAuthorized();
@@ -64,9 +90,16 @@ public abstract class FrontCommand {
             strategy.doLogic(context, request, response);
         }
     }
+
+    /**
+     * Process method
+     */
     public abstract void process() throws ServletException, IOException;
 
-
+    /**
+     * Redirect to target jsp page.
+     * @param target
+     */
     protected void forward(String target) throws ServletException, IOException {
         target = String.format(LINK, target);
         RequestDispatcher dispatcher = context.getRequestDispatcher(target);

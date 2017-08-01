@@ -21,6 +21,12 @@ public class CreateLotCommand extends FrontCommand {
     private StrategyInterface strategy = new CreateLotStrategy();
     private boolean protectedLink = true;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public CreateLotCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -35,6 +41,9 @@ public class CreateLotCommand extends FrontCommand {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     public void process() throws ServletException, IOException {
         doStrategy();
     }

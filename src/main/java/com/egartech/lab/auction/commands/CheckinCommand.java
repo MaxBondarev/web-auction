@@ -15,6 +15,12 @@ public class CheckinCommand extends FrontCommand {
 
     final String ADRESS = "checkin";
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public CheckinCommand(ServletContext context,
                           HttpServletRequest request,
                           HttpServletResponse response
@@ -29,6 +35,9 @@ public class CheckinCommand extends FrontCommand {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     @Override
     public void process() throws ServletException, IOException {
         doStrategy();

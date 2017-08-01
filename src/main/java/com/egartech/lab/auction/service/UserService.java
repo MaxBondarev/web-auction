@@ -43,6 +43,7 @@ public class UserService {
     /**
      * Find {@link User} by id.
      * @param id
+     * @return user
      */
     public User findById(String id) {
         userDao.useEntityManager();
@@ -53,6 +54,7 @@ public class UserService {
     /**
      * Find {@link User} by login.
      * @param login
+     * @return user
      */
     public User findByLogin(String login) {
         userDao.useEntityManager();
@@ -73,6 +75,7 @@ public class UserService {
 
     /**
      * Find all {@link User}s.
+     * @return users
      */
     public List<User> findAll() {
         userDao.useEntityManager();

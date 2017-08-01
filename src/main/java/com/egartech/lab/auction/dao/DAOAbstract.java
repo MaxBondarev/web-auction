@@ -18,6 +18,7 @@ public abstract class DAOAbstract<T, Id extends Serializable> {
 
     /**
      * Get EntityManager for using
+     * @return EntityManager
      */
     public EntityManager useEntityManager() {
         emf = DAOFactory.getEMF();
@@ -27,6 +28,7 @@ public abstract class DAOAbstract<T, Id extends Serializable> {
 
     /**
      * Get Transaction of EntityManager
+     * @return EntityManager with Transaction
      */
     public EntityManager getTransaction(){
         emf = DAOFactory.getEMF();
@@ -42,6 +44,10 @@ public abstract class DAOAbstract<T, Id extends Serializable> {
         em.getTransaction().commit();
     }
 
+    /**
+     * Get EntityManager
+     * @return EntityManager
+     */
     public EntityManager getEM() {
         return em;
     }
@@ -84,6 +90,7 @@ public abstract class DAOAbstract<T, Id extends Serializable> {
 
     /**
      * @see DaoInterface
+     * @return List of entities
      */
     @SuppressWarnings("unchecked")
     public List<T> findAll(T entity) {

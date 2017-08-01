@@ -21,6 +21,12 @@ public class ListCommand extends FrontCommand {
     public StrategyInterface strategy = new ListStrategy();
     public boolean protectedLink = true;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public ListCommand(ServletContext context,
                        HttpServletRequest request,
                        HttpServletResponse response
@@ -35,6 +41,9 @@ public class ListCommand extends FrontCommand {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     @Override
     public void process() throws ServletException, IOException {
         doStrategy();

@@ -15,6 +15,7 @@ public class LotDAO extends DAOAbstract<Lot, String> {
     /**
      * Find {@link Bet} with max price of specific {@link Lot}.
      * @param entity
+     * @return id of Bet with max price
      */
     public Integer findIdMaxPriceLotBet(Lot entity) {
         Integer intId = (Integer) getEM().createQuery(

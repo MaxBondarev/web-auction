@@ -50,5 +50,4 @@ public class CreateLotStrategy implements StrategyInterface {
                     .forward(request, response);
         }
     }
-
 }

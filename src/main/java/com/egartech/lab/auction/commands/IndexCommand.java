@@ -19,6 +19,12 @@ public class IndexCommand extends FrontCommand {
     public StrategyInterface strategy;
     public boolean protectedLink = false;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public IndexCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -33,6 +39,9 @@ public class IndexCommand extends FrontCommand {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     @Override
     public void process() throws ServletException, IOException {
         doStrategy();

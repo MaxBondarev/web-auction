@@ -25,6 +25,7 @@ public class Lot {
 
     /**
      * id - Lot id from database.
+     * @return id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +43,7 @@ public class Lot {
 
     /**
      * name - Lot name.
+     * @return name
      */
     @Basic
     @Column(name = "name")
@@ -51,6 +53,7 @@ public class Lot {
 
     /**
      * name - Lot name.
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
@@ -58,6 +61,7 @@ public class Lot {
 
     /**
      * bet - the highest {@link Bet} of this Lot.
+     * @return bet
      */
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bet_id", nullable = true)
@@ -67,6 +71,7 @@ public class Lot {
 
     /**
      * bet - the highest {@link Bet} of this Lot.
+     * @param bet
      */
     public void setBet(Bet bet) {
         this.bet = bet;
@@ -74,6 +79,7 @@ public class Lot {
 
     /**
      * bets - Set of all {@link Bet} of this Lot.
+     * @return bets
      */
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "lot_id", nullable = true)
@@ -83,6 +89,7 @@ public class Lot {
 
     /**
      * bets - Set of all {@link Bet} of this Lot.
+     * @param bets
      */
     public void setBets(Set<Bet> bets) {
         this.bets = bets;

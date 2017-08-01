@@ -19,6 +19,12 @@ public class NewBetCommand extends FrontCommand  {
     private StrategyInterface strategy = new NewBetStrategy();
     private boolean protectedLink = true;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public NewBetCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -33,6 +39,9 @@ public class NewBetCommand extends FrontCommand  {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     public void process() throws ServletException, IOException {
         doStrategy();
     }

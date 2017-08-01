@@ -21,6 +21,12 @@ public class LogOutCommand extends FrontCommand {
     private StrategyInterface strategy = new LogOutStrategy();
     private boolean protectedLink = true;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public LogOutCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -34,6 +40,10 @@ public class LogOutCommand extends FrontCommand {
             setProtectedLink(protectedLink);
         }
     }
+
+    /**
+     * @see FrontCommand
+     */
     public void process() throws ServletException, IOException {
         doStrategy();
     }

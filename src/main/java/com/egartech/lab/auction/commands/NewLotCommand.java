@@ -18,6 +18,12 @@ public class NewLotCommand extends FrontCommand {
     final String ADRESS = "newlot";
     private boolean protectedLink = true;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public NewLotCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -32,6 +38,9 @@ public class NewLotCommand extends FrontCommand {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     @Override
     public void process() throws ServletException, IOException {
         doStrategy();

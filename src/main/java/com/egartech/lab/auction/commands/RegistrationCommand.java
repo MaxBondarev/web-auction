@@ -19,6 +19,12 @@ public class RegistrationCommand extends FrontCommand {
     public StrategyInterface strategy = new RegistrationStrategy();
     public boolean protectedLink = false;
 
+    /**
+     * Public constructor.
+     * @param context
+     * @param request
+     * @param response
+     */
     public RegistrationCommand(ServletContext context,
                         HttpServletRequest request,
                         HttpServletResponse response
@@ -33,6 +39,9 @@ public class RegistrationCommand extends FrontCommand {
         }
     }
 
+    /**
+     * @see FrontCommand
+     */
     @Override
     public void process() throws ServletException, IOException {
         doStrategy();

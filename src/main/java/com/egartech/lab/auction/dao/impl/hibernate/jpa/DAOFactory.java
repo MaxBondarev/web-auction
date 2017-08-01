@@ -22,6 +22,7 @@ public class DAOFactory {
 
     /**
      * Get EntityManagerFactory if does not exist.
+     * @return entityManagerFactory instance
      */
     public static EntityManagerFactory getEMF() {
         if (entityManagerFactory == null) {
@@ -32,6 +33,7 @@ public class DAOFactory {
 
     /**
      * Create EntityManagerFactory.
+     * @return entityManagerFactory instance
      */
     @BeforeClass
     private static EntityManagerFactory createEntityManagerFactory() {

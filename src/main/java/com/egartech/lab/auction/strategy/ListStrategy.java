@@ -40,6 +40,4 @@ public class ListStrategy implements StrategyInterface {
             request.getRequestDispatcher(LINK_LIST)
                     .forward(request, response);
     }
-
-
 }

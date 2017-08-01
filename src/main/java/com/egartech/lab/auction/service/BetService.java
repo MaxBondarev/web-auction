@@ -46,6 +46,7 @@ public class BetService {
     /**
      * Find {@link Bet} by id.
      * @param id
+     * @return bet
      */
     public Bet findById(Integer id) {
         betDao.useEntityManager();
@@ -66,6 +67,7 @@ public class BetService {
 
     /**
      * Find all {@link Bet}s.
+     * @return bets
      */
     public List<Bet> findAll() {
         betDao.useEntityManager();

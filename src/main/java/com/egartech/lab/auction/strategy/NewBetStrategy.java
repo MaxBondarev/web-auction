@@ -36,7 +36,6 @@ public class NewBetStrategy implements StrategyInterface {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-
         if (Validator.checkBet(request)) {
             Double betPrice = Double.parseDouble(
                     request.getParameter("bet_price"));
@@ -49,7 +48,6 @@ public class NewBetStrategy implements StrategyInterface {
             BetService betService = new BetService();
             betService.save(bet, lot);
         }
-
         ListCommand lc = new ListCommand(context, request, response);
         lc.process();
     }
