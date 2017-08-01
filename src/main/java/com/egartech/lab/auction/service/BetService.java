@@ -26,9 +26,9 @@ public class BetService {
      * @param entity
      */
     public void save(Bet entity, Lot lot) {
-        betDao.openCurrentSessionwithTransaction();
+        betDao.getTransaction();
         betDao.save(entity);
-        betDao.closeCurrentSessionwithTransaction();
+        betDao.commitTransaction();
         LotService lc = new LotService();
         lc.update(lot);
     }
@@ -38,9 +38,9 @@ public class BetService {
      * @param entity
      */
     public void update(Bet entity) {
-        betDao.openCurrentSessionwithTransaction();
+        betDao.getTransaction();
         betDao.update(entity);
-        betDao.closeCurrentSessionwithTransaction();
+        betDao.commitTransaction();
     }
 
     /**
@@ -48,7 +48,7 @@ public class BetService {
      * @param id
      */
     public Bet findById(Integer id) {
-        betDao.openCurrentSession();
+        betDao.useEntityManager();
         Bet bet = betDao.findById(String.valueOf(id), new Bet());
         return bet;
     }
@@ -58,19 +58,18 @@ public class BetService {
      * @param id
      */
     public void delete(String id) {
-        betDao.openCurrentSessionwithTransaction();
+        betDao.getTransaction();
         Bet bet = betDao.findById(id, new Bet());
         betDao.delete(bet);
-        betDao.closeCurrentSessionwithTransaction();
+        betDao.commitTransaction();
     }
 
     /**
      * Find all {@link Bet}s.
      */
     public List<Bet> findAll() {
-        betDao.openCurrentSession();
+        betDao.useEntityManager();
         List<Bet> bets = betDao.findAll(new Bet());
-        betDao.closeCurrentSession();
         return bets;
     }
 
@@ -78,8 +77,8 @@ public class BetService {
      * Delete all {@link Bet}s.
      */
     public void deleteAll() {
-        betDao.openCurrentSessionwithTransaction();
+        betDao.getTransaction();
         betDao.deleteAll(new Bet());
-        betDao.closeCurrentSessionwithTransaction();
+        betDao.commitTransaction();
     }
 }

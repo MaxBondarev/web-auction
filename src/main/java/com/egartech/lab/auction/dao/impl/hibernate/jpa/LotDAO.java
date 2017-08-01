@@ -12,6 +12,10 @@ import com.egartech.lab.auction.data.Lot;
  */
 public class LotDAO extends DAOAbstract<Lot, String> {
 
+    /**
+     * Find {@link Bet} with max price of specific {@link Lot}.
+     * @param entity
+     */
     public Integer findIdMaxPriceLotBet(Lot entity) {
         Integer intId = (Integer) getEM().createQuery(
                 "select id from Bet where lot_id=:lotid and price=" +
@@ -20,6 +24,9 @@ public class LotDAO extends DAOAbstract<Lot, String> {
         return intId;
     }
 
+    /**
+     * Calculate max {@link Bet} price of {@link Lot} and update Lot entity.
+     */
     @Override
     public void update(Lot entity) {
         BetService betService = new BetService();

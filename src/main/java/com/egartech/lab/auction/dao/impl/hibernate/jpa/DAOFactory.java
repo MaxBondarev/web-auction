@@ -16,19 +16,25 @@ public class DAOFactory {
     public static EntityManagerFactory entityManagerFactory;
 
     /**
-     * Protected constructor.
+     * Public constructor.
      */
     public DAOFactory() {}
 
-    public static EntityManagerFactory createEMF() {
+    /**
+     * Get EntityManagerFactory if does not exist.
+     */
+    public static EntityManagerFactory getEMF() {
         if (entityManagerFactory == null) {
-            entityManagerFactory = DAOFactory.getEntityManagerFactory();
+            entityManagerFactory = DAOFactory.createEntityManagerFactory();
         }
         return entityManagerFactory;
     }
 
+    /**
+     * Create EntityManagerFactory.
+     */
     @BeforeClass
-    private static EntityManagerFactory getEntityManagerFactory() {
+    private static EntityManagerFactory createEntityManagerFactory() {
         entityManagerFactory = Persistence.createEntityManagerFactory(PROJECT_NAME);
         return entityManagerFactory;
     }

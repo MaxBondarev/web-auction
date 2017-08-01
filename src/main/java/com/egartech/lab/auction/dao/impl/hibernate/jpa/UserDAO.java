@@ -11,6 +11,10 @@ import javax.persistence.Query;
  */
 public class UserDAO extends DAOAbstract<User, String> {
 
+    /**
+     * Find {@link User} by login.
+     * @param login
+     */
     public User findByLogin(String login) {
         User user = null;
         Query query = em.createQuery("SELECT u FROM User u where u.login = :login");

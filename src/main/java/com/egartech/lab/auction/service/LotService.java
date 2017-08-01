@@ -24,9 +24,9 @@ public class LotService {
      * @param entity
      */
     public void save(Lot entity) {
-        lotDao.openCurrentSessionwithTransaction();
+        lotDao.getTransaction();
         lotDao.save(entity);
-        lotDao.closeCurrentSessionwithTransaction();
+        lotDao.commitTransaction();
     }
 
     /**
@@ -34,9 +34,9 @@ public class LotService {
      * @param entity
      */
     public void update(Lot entity) {
-        lotDao.openCurrentSessionwithTransaction();
+        lotDao.getTransaction();
         lotDao.update(entity);
-        lotDao.closeCurrentSessionwithTransaction();
+        lotDao.commitTransaction();
     }
 
     /**
@@ -44,9 +44,8 @@ public class LotService {
      * @param id
      */
     public Lot findById(String id) {
-        lotDao.openCurrentSession();
+        lotDao.useEntityManager();
         Lot lot = lotDao.findById(id, new Lot());
-        lotDao.closeCurrentSession();
         return lot;
     }
 
@@ -55,17 +54,17 @@ public class LotService {
      * @param id
      */
     public void delete(String id) {
-        lotDao.openCurrentSessionwithTransaction();
+        lotDao.getTransaction();
         Lot lot = lotDao.findById(id, new Lot());
         lotDao.delete(lot);
-        lotDao.closeCurrentSessionwithTransaction();
+        lotDao.commitTransaction();
     }
 
     /**
      * Find all {@link Lot}s.
      */
     public List<Lot> findAll() {
-        lotDao.openCurrentSession();
+        lotDao.useEntityManager();
         List<Lot> lots = lotDao.findAll(new Lot());
         return lots;
     }
@@ -74,8 +73,8 @@ public class LotService {
      * Delete all {@link Lot}s.
      */
     public void deleteAll() {
-        lotDao.openCurrentSessionwithTransaction();
+        lotDao.getTransaction();
         lotDao.deleteAll(new Lot());
-        lotDao.closeCurrentSessionwithTransaction();
+        lotDao.commitTransaction();
     }
 }

@@ -25,9 +25,9 @@ public class UserService {
      * @param entity
      */
     public void save(User entity) {
-        userDao.openCurrentSessionwithTransaction();
+        userDao.getTransaction();
         userDao.save(entity);
-        userDao.closeCurrentSessionwithTransaction();
+        userDao.commitTransaction();
     }
 
     /**
@@ -35,9 +35,9 @@ public class UserService {
      * @param entity
      */
     public void update(User entity) {
-        userDao.openCurrentSessionwithTransaction();
+        userDao.getTransaction();
         userDao.update(entity);
-        userDao.closeCurrentSessionwithTransaction();
+        userDao.commitTransaction();
     }
 
     /**
@@ -45,9 +45,8 @@ public class UserService {
      * @param id
      */
     public User findById(String id) {
-        userDao.openCurrentSession();
+        userDao.useEntityManager();
         User user = userDao.findById(id, new User());
-        userDao.closeCurrentSession();
         return user;
     }
 
@@ -56,9 +55,8 @@ public class UserService {
      * @param login
      */
     public User findByLogin(String login) {
-        userDao.openCurrentSession();
+        userDao.useEntityManager();
         User user = userDao.findByLogin(login);
-        userDao.closeCurrentSession();
         return user;
     }
 
@@ -67,19 +65,18 @@ public class UserService {
      * @param id
      */
     public void delete(String id) {
-        userDao.openCurrentSessionwithTransaction();
+        userDao.getTransaction();
         User user = userDao.findById(id, new User());
         userDao.delete(user);
-        userDao.closeCurrentSessionwithTransaction();
+        userDao.commitTransaction();
     }
 
     /**
      * Find all {@link User}s.
      */
     public List<User> findAll() {
-        userDao.openCurrentSession();
+        userDao.useEntityManager();
         List<User> users = userDao.findAll(new User());
-        userDao.closeCurrentSession();
         return users;
     }
 
@@ -87,8 +84,8 @@ public class UserService {
      * Delete all {@link User}s.
      */
     public void deleteAll() {
-        userDao.openCurrentSessionwithTransaction();
+        userDao.getTransaction();
         userDao.deleteAll(new User());
-        userDao.closeCurrentSessionwithTransaction();
+        userDao.commitTransaction();
     }
 }
