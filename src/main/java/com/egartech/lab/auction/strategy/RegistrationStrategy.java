@@ -23,6 +23,14 @@ public class RegistrationStrategy implements StrategyInterface {
 
     final String CHECKIN = "/WEB-INF/jsp/checkin.jsp";
 
+    /**
+     * Method of performing logic. Validation of login and password,
+     * create {@link User}, add User in session, redirect to
+     * {@link ListCommand}. If error, redirect back on checkin.jsp.
+     * @param context
+     * @param request
+     * @param response
+     */
     @Override
     public void doLogic(
             ServletContext context,

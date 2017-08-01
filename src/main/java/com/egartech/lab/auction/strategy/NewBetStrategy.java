@@ -23,6 +23,13 @@ import java.io.IOException;
  */
 public class NewBetStrategy implements StrategyInterface {
 
+    /**
+     * Method of performing logic. Validation, creation {@link Bet}, redirect
+     * to {@link ListCommand}.
+     * @param context
+     * @param request
+     * @param response
+     */
     @Override
     public void doLogic(
             ServletContext context,

@@ -17,6 +17,13 @@ public class LogOutStrategy implements StrategyInterface  {
 
     final String LINK_INDEX = "/WEB-INF/jsp/index.jsp";
 
+    /**
+     * Method of performing logic. Delete User data from session and redirect
+     * on index.jsp.
+     * @param context
+     * @param request
+     * @param response
+     */
     public void doLogic(
             ServletContext context,
             HttpServletRequest request,

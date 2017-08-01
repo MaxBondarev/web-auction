@@ -22,6 +22,13 @@ public class CreateLotStrategy implements StrategyInterface {
 
     final String LINK_NEW_LOT = "/WEB-INF/jsp/newlot.jsp";
 
+    /**
+     * Method of performing logic. Validation, creation {@link Lot}, redirect
+     * to {@link ListCommand} or if error redirect back on newlot.jsp.
+     * @param context
+     * @param request
+     * @param response
+     */
     @Override
     public void doLogic(
             ServletContext context,

@@ -8,15 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Class NewLotCommand contains strategy for processing request, info about
- * access checking and redirect request to target jsp page.
+ * Class NewLotCommand contains info about access checking and redirect
+ * request to target jsp page.
  *
  * @author Max Bondarev.
  */
 public class NewLotCommand extends FrontCommand {
 
     final String ADRESS = "newlot";
-    private StrategyInterface privateStrategy;
     private boolean protectedLink = true;
 
     public NewLotCommand(ServletContext context,

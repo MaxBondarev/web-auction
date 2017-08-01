@@ -34,6 +34,12 @@ public class Validator {
             "than zero!";
     final static String TEXT_NULL = "";
 
+    /**
+     * Checks authorisation data.
+     * @param login
+     * @param password
+     * @param request
+     */
     public static boolean checkAuth(String login,
                                     String password,
                                     HttpServletRequest request) {
@@ -83,6 +89,12 @@ public class Validator {
         }
     }
 
+    /**
+     * Checks registration data.
+     * @param login
+     * @param password
+     * @param request
+     */
     public static boolean checkReg(String login,
                                    String password,
                                    HttpServletRequest request) {
@@ -124,6 +136,11 @@ public class Validator {
 
     }
 
+    /**
+     * Validation of lotname.
+     * @param lotName
+     * @param request
+     */
     public static boolean checkNewLot(String lotName,
                                       HttpServletRequest request) {
         Validator.request = null;
@@ -155,6 +172,10 @@ public class Validator {
         }
     }
 
+    /**
+     * Checks if the user is in session
+     * @param request
+     */
     public static boolean isUserInSession(HttpServletRequest request) {
         Validator.request = request;
         HttpSession hSession = request.getSession();
@@ -166,6 +187,10 @@ public class Validator {
         }
     }
 
+    /**
+     * Checks whether the bet data are correct
+     * @param request
+     */
     public static boolean checkBet(HttpServletRequest request) {
         Validator.request = request;
         if (request.getParameter("bet_price") == "") {

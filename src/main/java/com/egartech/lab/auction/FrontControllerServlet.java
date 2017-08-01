@@ -28,6 +28,10 @@ public class FrontControllerServlet extends HttpServlet {
         startFrontController(req, resp);
     }
 
+    /**
+     * Redirect requests to {@link FrontCommand} servlets using
+     * {@link FrontCommandFactory}.
+     */
     private void startFrontController(HttpServletRequest req,
                                       HttpServletResponse resp
     ) throws ServletException, IOException {

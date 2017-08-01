@@ -22,6 +22,14 @@ public class LoginStrategy implements StrategyInterface {
 
     final String LINK_INDEX = "/WEB-INF/jsp/index.jsp";
 
+    /**
+     * Method of performing logic. Validation of login and password,
+     * create {@link User}, add User in session, redirect to
+     * {@link ListCommand}. If error, redirect back on index.jsp.
+     * @param context
+     * @param request
+     * @param response
+     */
     @Override
     public void doLogic(
             ServletContext context,

@@ -14,6 +14,12 @@ import java.io.IOException;
  */
 public interface StrategyInterface {
 
+   /**
+    * Method of performing logic
+    * @param context
+    * @param request
+    * @param response
+    */
    public void doLogic(
            ServletContext context,
            HttpServletRequest request,

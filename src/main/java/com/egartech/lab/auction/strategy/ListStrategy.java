@@ -22,6 +22,12 @@ public class ListStrategy implements StrategyInterface {
 
     final String LINK_LIST = "/WEB-INF/jsp/list.jsp";
 
+    /**
+     * Method of performing logic. Shows all lots, their prices and users.
+     * @param context
+     * @param request
+     * @param response
+     */
     @Override
     public void doLogic(
             ServletContext context,
