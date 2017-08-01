@@ -34,5 +34,4 @@ public class CheckinCommand extends FrontCommand {
         doStrategy();
         forward(ADRESS);
     }
-
 }
