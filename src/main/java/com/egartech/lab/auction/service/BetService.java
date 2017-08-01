@@ -1,6 +1,5 @@
 package com.egartech.lab.auction.service;
 
-
 import com.egartech.lab.auction.dao.impl.hibernate.BetDAO;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.data.Lot;

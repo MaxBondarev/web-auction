@@ -66,9 +66,7 @@ public class Validator {
     }
 
     private static boolean isLoginExist(String login) {
-        if ((new UserService().findByLogin(login).getLogin() != "")
-                || (new UserService().findByLogin(login).getLogin() != null)) {
-            System.out.println(new UserService().findByLogin(login).getLogin());
+        if (new UserService().findByLogin(login) != null) {
             return true;
         } else {
             return false;

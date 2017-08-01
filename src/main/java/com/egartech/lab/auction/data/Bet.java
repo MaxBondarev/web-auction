@@ -1,7 +1,6 @@
 package com.egartech.lab.auction.data;
 
 import javax.persistence.*;
-import com.egartech.lab.auction.data.Lot;
 
 /**
  * Class Bet contains information about the {@link Lot}, {@link User} and
