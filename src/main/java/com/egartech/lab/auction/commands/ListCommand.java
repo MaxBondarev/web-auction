@@ -1,6 +1,5 @@
 package com.egartech.lab.auction.commands;
 
-
 import com.egartech.lab.auction.strategy.ListStrategy;
 import com.egartech.lab.auction.strategy.StrategyInterface;
 
