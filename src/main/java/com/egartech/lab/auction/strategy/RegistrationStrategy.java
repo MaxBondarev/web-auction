@@ -12,7 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
+/**
+ * Class RegistrationStrategy is a strategy for checking data, new user
+ * registration and redirect to the appropriate page.
+ * Implements {@link StrategyInterface}.
+ *
+ * @author Max Bondarev.
+ */
 public class RegistrationStrategy implements StrategyInterface {
 
     final String CHECKIN = "/WEB-INF/jsp/checkin.jsp";

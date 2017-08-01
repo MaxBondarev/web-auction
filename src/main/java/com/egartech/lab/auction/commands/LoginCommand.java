@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * Class LoginCommand contains strategy for processing request, info about
+ * access checking and redirect request to target jsp page.
+ *
+ * @author Max Bondarev.
+ */
 public class LoginCommand extends FrontCommand  {
 
-    StrategyInterface strategy = new LoginStrategy();;
+    StrategyInterface strategy = new LoginStrategy();
     boolean protectedLink = false;
 
     public LoginCommand(ServletContext context,

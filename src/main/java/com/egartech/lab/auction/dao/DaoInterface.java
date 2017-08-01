@@ -3,6 +3,11 @@ package com.egartech.lab.auction.dao;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * DaoInterface provides interface for DAO operations.
+ *
+ * @author Max Bondarev.
+ */
 public interface DaoInterface<T, Id extends Serializable>  {
 
     public void save(T entity);

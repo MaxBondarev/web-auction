@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * Class CreateLotCommand contains strategy for processing request, info about
+ * access checking and redirect request to target jsp page.
+ *
+ * @author Max Bondarev.
+ */
 public class CreateLotCommand extends FrontCommand {
 
     private StrategyInterface strategy = new CreateLotStrategy();

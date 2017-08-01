@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class CreateLotStrategy is a strategy for create a lot and redirect to the
+ * appropriate page. Implements {@link StrategyInterface}.
+ *
+ * @author Max Bondarev.
+ */
 public class CreateLotStrategy implements StrategyInterface {
 
     final String LINK_NEW_LOT = "/WEB-INF/jsp/newlot.jsp";

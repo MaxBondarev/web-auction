@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Class FrontControllerServlet distributes requests to executing servlets
+ * {@link FrontCommand} using {@link FrontCommandFactory}.
+ *
+ * @author Max Bondarev.
+ */
 public class FrontControllerServlet extends HttpServlet {
 
     @Override

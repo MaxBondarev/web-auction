@@ -1,15 +1,16 @@
 package com.egartech.lab.auction.validation;
 
-import com.egartech.lab.auction.data.Lot;
 import com.egartech.lab.auction.data.User;
 import com.egartech.lab.auction.service.UserService;
 import com.egartech.lab.auction.service.LotService;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
+/**
+ * Class Validator contains all methods of checking for the application.
+ *
+ * @author Max Bondarev.
+ */
 public class Validator {
     public static HttpServletRequest request;
 

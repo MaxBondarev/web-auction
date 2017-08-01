@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class FrontCommandFactory returns the servlet corresponding to the query.
+ *
+ * @author Max Bondarev.
+ */
 public class FrontCommandFactory {
     public static FrontCommand getFrontCommand(ServletContext con,
                                                HttpServletRequest req,

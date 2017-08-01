@@ -1,8 +1,5 @@
 package com.egartech.lab.auction.strategy;
 
-
-import com.egartech.lab.auction.data.User;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Class LogOutStrategy is a strategy for the end of user session from any page.
+ * Implements {@link StrategyInterface}.
+ *
+ * @author Max Bondarev.
+ */
 public class LogOutStrategy implements StrategyInterface  {
 
     final String LINK_INDEX = "/WEB-INF/jsp/index.jsp";

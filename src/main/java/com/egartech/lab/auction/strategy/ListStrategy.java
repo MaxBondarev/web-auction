@@ -12,10 +12,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class ListStrategy is a strategy for show all lots and redirect to the
+ * appropriate page. Implements {@link StrategyInterface}.
+ *
+ * @author Max Bondarev.
+ */
 public class ListStrategy implements StrategyInterface {
 
     final String LINK_LIST = "/WEB-INF/jsp/list.jsp";
-    final String LINK_INDEX = "/WEB-INF/jsp/index.jsp";
 
     @Override
     public void doLogic(

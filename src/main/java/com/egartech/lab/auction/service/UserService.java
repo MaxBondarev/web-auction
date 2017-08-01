@@ -1,10 +1,15 @@
 package com.egartech.lab.auction.service;
 
-import com.egartech.lab.auction.dao.impl.hibernate.UserDAO;
+import com.egartech.lab.auction.dao.impl.hibernate.jpa.UserDAO;
 import com.egartech.lab.auction.data.User;
 
 import java.util.List;
 
+/**
+ * Class BetService provides CRUD operations for {@link User} objects.
+ *
+ * @author Max Bondarev.
+ */
 public class UserService {
     private static UserDAO userDao;
 

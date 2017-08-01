@@ -1,11 +1,15 @@
-package com.egartech.lab.auction.dao.impl.hibernate;
+package com.egartech.lab.auction.dao.impl.hibernate.jpa;
 
 import com.egartech.lab.auction.dao.DAOAbstract;
 import com.egartech.lab.auction.data.Bet;
 import com.egartech.lab.auction.service.BetService;
 import com.egartech.lab.auction.data.Lot;
 
-
+/**
+ * Class LotDAO is a JPA {@link Lot} DAO.
+ *
+ * @author Max Bondarev.
+ */
 public class LotDAO extends DAOAbstract<Lot, String> {
 
     public Integer findIdMaxPriceLotBet(Lot entity) {

@@ -23,6 +23,7 @@ public class User {
         setLogin(login);
         setPassword(password);
     }
+
     /**
      * id - User id from database.
      */

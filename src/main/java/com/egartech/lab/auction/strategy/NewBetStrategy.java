@@ -15,7 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
+/**
+ * Class NewBetStrategy is a strategy for create a bet and redirect to the
+ * appropriate page. Implements {@link StrategyInterface}.
+ *
+ * @author Max Bondarev.
+ */
 public class NewBetStrategy implements StrategyInterface {
 
     @Override

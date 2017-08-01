@@ -1,10 +1,14 @@
-package com.egartech.lab.auction.dao.impl.hibernate;
+package com.egartech.lab.auction.dao.impl.hibernate.jpa;
 
 import com.egartech.lab.auction.dao.DAOAbstract;
 import com.egartech.lab.auction.data.User;
-
 import javax.persistence.Query;
 
+/**
+ * Class UserDAO is a JPA {@link User} DAO.
+ *
+ * @author Max Bondarev.
+ */
 public class UserDAO extends DAOAbstract<User, String> {
 
     public User findByLogin(String login) {

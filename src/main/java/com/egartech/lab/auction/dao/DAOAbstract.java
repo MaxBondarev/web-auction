@@ -1,11 +1,16 @@
 package com.egartech.lab.auction.dao;
 
-import com.egartech.lab.auction.dao.impl.hibernate.DAOFactory;
+import com.egartech.lab.auction.dao.impl.hibernate.jpa.DAOFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Class DAOAbstract contains implementation of general JPA DAO operations.
+ *
+ * @author Max Bondarev.
+ */
 public abstract class DAOAbstract<T, Id extends Serializable> {
     
     private EntityManagerFactory emf;

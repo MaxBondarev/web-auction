@@ -1,6 +1,5 @@
 package com.egartech.lab.auction.commands;
 
-
 import com.egartech.lab.auction.strategy.StrategyInterface;
 import com.egartech.lab.auction.validation.Validator;
 
@@ -11,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Abstract class FrontCommand contains general methods for servlets
+ * which will processing user queries.
+ *
+ * @author Max Bondarev.
+ */
 public abstract class FrontCommand {
 
     public StrategyInterface strategy;
